@@ -1,0 +1,192 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RS Horizons V1</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: radial-gradient(circle at top, #10284a, #05070f 55%, #000);
+      color: white;
+    }
+
+    .hero {
+      min-height: 100vh;
+      padding: 40px 20px;
+      text-align: center;
+      background:
+        linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.85)),
+        radial-gradient(circle at center, rgba(0,140,255,0.25), transparent 45%);
+    }
+
+    .logo {
+      max-width: 520px;
+      width: 90%;
+      margin: 20px auto 10px;
+      display: block;
+      filter: drop-shadow(0 0 25px #33ccff);
+    }
+
+    h1 {
+      font-size: 54px;
+      margin: 10px 0;
+      letter-spacing: 2px;
+    }
+
+    .tagline {
+      font-size: 24px;
+      color: #33ccff;
+      margin-bottom: 25px;
+    }
+
+    .intro {
+      max-width: 900px;
+      margin: 0 auto 30px;
+      font-size: 18px;
+      line-height: 1.7;
+      color: #ddd;
+    }
+
+    .buttons a {
+      display: inline-block;
+      margin: 10px;
+      padding: 15px 26px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .discord {
+      background: #5865F2;
+    }
+
+    .download {
+      background: #9933ff;
+    }
+
+    .section {
+      padding: 45px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section h2 {
+      text-align: center;
+      color: #ffcc33;
+      font-size: 36px;
+      margin-bottom: 30px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(51,204,255,0.25);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.25);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      font-size: 18px;
+    }
+
+    .card a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 16px;
+      background: #33ccff;
+      color: #00111f;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .warning {
+      text-align: center;
+      color: #ffcc33;
+      font-weight: bold;
+      margin-top: 35px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #aaa;
+      background: #02030a;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="hero">
+    <img src="RSHLogo.png" alt="RS Horizons Logo" class="logo" />
+
+    <h1>RS Horizons V1</h1>
+    <div class="tagline">One World. Endless Roads.</div>
+
+    <p class="intro">
+      RS Horizons is a massive connected ETS2 world expansion project created by
+      <strong>Rays Sim</strong> and <strong>Mr.Swede</strong>, bringing together major map projects,
+      fixes, connectors and updates into one huge driving experience.
+    </p>
+
+    <div class="buttons">
+      <a class="discord" href="https://discord.com/invite/nmPuEYtmhZ" target="_blank">Join Discord</a>
+      <a class="download" href="#downloads">Download Links</a>
+    </div>
+
+    <p class="warning">
+      ⚠️ Follow the official load order exactly. Missing files may cause crashes.
+    </p>
+  </div>
+
+  <div class="section" id="downloads">
+    <h2>📥 RS Horizons Map Combo Downloads</h2>
+
+    <div class="grid">
+
+      <div class="card"><h3>FULLSCREEN 1.59</h3><a href="https://modsfire.com/Uk0tH6Z2mkT0xQA" target="_blank">Download</a></div>
+      <div class="card"><h3>ETS2 GLOBAL BACKGROUND MAP + GRAND UTOPIA V2.8</h3><a href="https://mods.to/NROe6a0a0ce7a2699/" target="_blank">Download</a></div>
+      <div class="card"><h3>UNIVERSAL FIX LOCALIZATION</h3><a href="https://truckymods.io/euro-truck-simulator-2/map-patches/universal-fix-localization-583165" target="_blank">Download</a></div>
+      <div class="card"><h3>ULTIMATE MAP COMBO FIX PROMODS 1.59-1.1.1</h3><a href="https://modsfire.com/CA3nquJ775E384y" target="_blank">Download</a></div>
+      <div class="card"><h3>ULTIMATE MAP COMBO FIX 1.59-1.6.1</h3><a href="https://modsfire.com/7Gz4S6HX2s93j87" target="_blank">Download</a></div>
+      <div class="card"><h3>ABKHAZIA MAP 1.6</h3><a href="https://truckymods.io/euro-truck-simulator-2/maps/abkhazia-map-675817" target="_blank">Download</a></div>
+      <div class="card"><h3>PROMODS / SRMAP RC</h3><a href="https://truckymods.io/euro-truck-simulator-2/maps/promods-srmap-roadconnection" target="_blank">Download</a></div>
+      <div class="card"><h3>1.59 HYBRID2</h3><a href="https://sharemods.com/jeu183erkuzg/159Hybrid2.scs.html" target="_blank">Download</a></div>
+
+      <div class="card"><h3>ROEX EngCityNames</h3><a href="https://sharemods.com/yu0o7mizfyll/ROEXengnames.scs.html" target="_blank">Download</a></div>
+      <div class="card"><h3>ROEX 5.1/1</h3><a href="https://sharemods.com/qadmijixjf7d/51RXF1.scs.html" target="_blank">Download</a></div>
+      <div class="card"><h3>ROEX 5.1/2</h3><a href="https://sharemods.com/p86ol437b038/51RXF2.scs.html" target="_blank">Download</a></div>
+      <div class="card"><h3>ROEX 5.1/3</h3><a href="https://sharemods.com/kinf0ci507jc/51RXF3.scs.html" target="_blank">Download</a></div>
+      <div class="card"><h3>ROEX 5.1/4</h3><a href="https://sharemods.com/zwcgf7obxhiu/51RXF4.scs.html" target="_blank">Download</a></div>
+
+      <div class="card"><h3>PROMODS 2.82</h3><a href="https://promods.net/setup.php?game=ets" target="_blank">Download</a></div>
+      <div class="card"><h3>PROMODS MIDDLE EAST</h3><a href="https://promods.net/setup.php?game=me" target="_blank">Download</a></div>
+      <div class="card"><h3>BEYOND V9</h3><a href="https://terramaps.net/download/view.php?game=beyondets2" target="_blank">Download</a></div>
+      <div class="card"><h3>SRMAP 13.1</h3><a href="https://modsfire.com/6Hd64rb873NhhlF" target="_blank">Download</a></div>
+      <div class="card"><h3>ROAD TO ARAL</h3><a href="https://modsfire.com/download/DHelmg4SemZi1K1/60db2" target="_blank">Download</a></div>
+      <div class="card"><h3>GRAND UTOPIA 1.19.4</h3><a href="https://truckymods.io/euro-truck-simulator-2/maps/grand-utopia-map" target="_blank">Download</a></div>
+
+    </div>
+  </div>
+
+  <footer>
+    🌍 RS Horizons V1 • Created by Rays Sim & Mr.Swede • One World. Endless Roads.
+  </footer>
+
+</body>
+</html>
+```
