@@ -1,251 +1,303 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RS Horizons V1</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RS Horizons V1</title>
 
-  <style>
-    * { box-sizing: border-box; }
+<style>
+*{box-sizing:border-box}
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: radial-gradient(circle at top, #10284a, #05070f 55%, #000);
-      color: white;
-    }
-
-    .hero {
-      padding: 25px 15px 20px;
-      text-align: center;
-      background:
-        linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.75)),
-        radial-gradient(circle at center, rgba(0,140,255,0.28), transparent 45%);
-    }
-
-    .logo {
-      max-width: 420px;
-      width: 88%;
-      display: block;
-      margin: 0 auto 5px;
-      filter: drop-shadow(0 0 20px #33ccff);
-    }
-
-    h1 {
-      font-size: 42px;
-      margin: 5px 0;
-      letter-spacing: 2px;
-    }
-
-    .tagline {
-      font-size: 20px;
-      color: #33ccff;
-      margin-bottom: 12px;
-    }
-
-    .intro {
-      max-width: 900px;
-      margin: 0 auto 15px;
-      font-size: 16px;
-      line-height: 1.5;
-      color: #ddd;
-    }
-
-    .buttons a {
-      display: inline-block;
-      margin: 6px;
-      padding: 12px 20px;
-      border-radius: 10px;
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-      font-size: 16px;
-    }
-
-    .discord { background: #5865F2; }
-    .download { background: #9933ff; }
-     .youtube { 
-  background: #ff0000; 
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:radial-gradient(circle at top,#10284a,#05070f 55%,#000);
+color:white;
 }
-    
-    .warning {
-      color: #ffcc33;
-      font-weight: bold;
-      margin-top: 10px;
-      font-size: 15px;
-    }
 
-    .section {
-      padding: 25px 12px 35px;
-      max-width: 1200px;
-      margin: auto;
-    }
+.hero{
+padding:28px 15px 18px;
+text-align:center;
+background:
+linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.82)),
+radial-gradient(circle at center,rgba(0,140,255,0.22),transparent 45%);
+}
 
-    .section h2 {
-      text-align: center;
-      color: #ffcc33;
-      font-size: 28px;
-      margin: 0 0 18px;
-    }
+.logo{
+max-width:430px;
+width:90%;
+display:block;
+margin:0 auto 8px;
+filter:drop-shadow(0 0 20px #33ccff);
+}
 
-    .load-list {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
+h1{
+font-size:44px;
+margin:0;
+letter-spacing:2px;
+}
 
-    .row {
-      display: grid;
-      grid-template-columns: 55px 1fr 130px;
-      align-items: center;
-      gap: 10px;
-      background: rgba(255,255,255,0.065);
-      border: 1px solid rgba(51,204,255,0.20);
-      border-radius: 10px;
-      padding: 9px 11px;
-    }
+.tagline{
+font-size:22px;
+color:#33ccff;
+margin:8px 0 14px;
+}
 
-    .row:hover {
-      border-color: #33ccff;
-      box-shadow: 0 0 14px rgba(51,204,255,0.16);
-    }
+.intro{
+max-width:900px;
+margin:auto;
+font-size:16px;
+line-height:1.5;
+color:#ddd;
+}
 
-    .num {
-      color: #33ccff;
-      font-size: 17px;
-      font-weight: bold;
-      text-align: center;
-    }
+.buttons{margin-top:16px}
 
-    .name {
-      font-size: 15px;
-      font-weight: bold;
-      line-height: 1.25;
-    }
+.buttons a{
+display:inline-block;
+margin:6px;
+padding:11px 19px;
+border-radius:10px;
+text-decoration:none;
+font-size:15px;
+font-weight:bold;
+color:white;
+}
 
-    .note {
-      color: #ffcc33;
-      font-size: 12px;
-      font-weight: normal;
-    }
+.discord{background:#5865F2}
+.youtube{background:#ff0000}
+.download{background:#9933ff}
 
-    .updated { color: #999; font-size: 12px; margin-top: 4px; font-weight: normal; }
-    
-    .btn {
-      display: block;
-      text-align: center;
-      background: #9933ff;
-      padding: 8px 10px;
-      border-radius: 8px;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 14px;
-    }
+.warning{
+margin-top:12px;
+font-size:14px;
+font-weight:bold;
+color:#ffcc33;
+}
 
-    .btn:hover { background: #aa55ff; }
-    .soon { background: #444; pointer-events: none; }
+.section{
+padding:18px 10px 35px;
+max-width:1400px;
+margin:auto;
+}
 
-    footer {
-      text-align: center;
-      padding: 18px;
-      color: #aaa;
-      background: #02030a;
-      font-size: 14px;
-    }
+.section h2{
+text-align:center;
+font-size:30px;
+color:#ffcc33;
+margin:0 0 16px;
+}
 
-    @media(max-width:700px) {
-      h1 { font-size: 32px; }
-      .row {
-        grid-template-columns: 45px 1fr;
-      }
-      .btn {
-        grid-column: 1 / -1;
-      }
-    }
-  </style>
+.load-list{
+display:flex;
+flex-direction:column;
+gap:6px;
+}
+
+.row{
+display:grid;
+grid-template-columns:55px 1fr 140px 130px;
+align-items:center;
+gap:10px;
+background:rgba(255,255,255,0.06);
+border:1px solid rgba(51,204,255,0.18);
+border-radius:10px;
+padding:8px 12px;
+transition:0.25s;
+}
+
+.row:hover{
+border-color:#33ccff;
+box-shadow:0 0 12px rgba(51,204,255,0.15);
+}
+
+.num{
+font-size:16px;
+font-weight:bold;
+color:#33ccff;
+text-align:center;
+}
+
+.name{
+font-size:15px;
+font-weight:bold;
+line-height:1.25;
+}
+
+.updated{
+font-size:12px;
+color:#999;
+text-align:center;
+white-space:nowrap;
+}
+
+.note{
+display:block;
+font-size:12px;
+font-weight:normal;
+color:#ffcc33;
+margin-top:2px;
+}
+
+.btn{
+display:block;
+text-align:center;
+background:#9933ff;
+padding:8px 10px;
+border-radius:8px;
+text-decoration:none;
+font-size:14px;
+font-weight:bold;
+color:white;
+}
+
+.btn:hover{background:#aa55ff}
+
+.section-row{
+text-align:center;
+background:rgba(255,204,51,0.12);
+border:1px solid rgba(255,204,51,0.35);
+color:#ffcc33;
+font-weight:bold;
+font-size:17px;
+padding:10px;
+border-radius:10px;
+margin:8px 0;
+letter-spacing:1px;
+}
+
+footer{
+text-align:center;
+padding:18px;
+background:#02030a;
+color:#999;
+font-size:13px;
+margin-top:25px;
+}
+
+@media(max-width:850px){
+.row{grid-template-columns:45px 1fr}
+.updated{text-align:left}
+.btn{grid-column:1/-1}
+}
+</style>
 </head>
 
 <body>
 
-  <div class="hero">
-    <img src="RSHLogo.png" alt="RS Horizons Logo" class="logo" />
+<div class="hero">
+<img src="RSHLogo.png" class="logo" alt="RS Horizons Logo">
 
-    <h1>RS Horizons V1</h1>
-    <div class="tagline">One World. Endless Roads.</div>
+<h1>RS Horizons V1</h1>
+<div class="tagline">One World. Endless Roads.</div>
 
-    <p class="intro">
-      RS Horizons is a massive connected ETS2 world expansion project created by
-      <strong>Rays Sim</strong> and <strong>Mr.Swede</strong>. Follow the official load order exactly on the discord .
-    </p>
+<p class="intro">
+RS Horizons is a massive connected ETS2 world expansion project created by Rays Sim & Mr.Swede, combining some of the biggest and best ETS2 map projects into one huge immersive driving experience.
+</p>
 
-    <div class="buttons">
-      <a class="discord" href="https://discord.com/invite/nmPuEYtmhZ" target="_blank">Join Discord</a>
-      <a class="download" href="#downloads">Download Links</a>
-      <a class="youtube" href="https://www.youtube.com/@RaysSim" target="_blank">YouTube Channel</a>
-    </div>
+<div class="buttons">
+<a class="discord" href="https://discord.com/invite/nmPuEYtmhZ" target="_blank">Join Discord</a>
+<a class="youtube" href="https://www.youtube.com/@RaysSim" target="_blank">YouTube Channel</a>
+<a class="download" href="#downloads">Download Links</a>
+</div>
 
-    <div class="warning">⚠️ All current ETS2 map DLCs are required.</div>
-  </div>
+<div class="warning">⚠️ ALL CURRENT ETS2 MAP DLCs ARE REQUIRED</div>
+</div>
 
-  <div class="section" id="downloads">
-    <h2>📥 RS Horizons Map Combo Downloads, Load Order In The Discord</h2>
+<div class="section" id="downloads">
+<h2>📥 RS Horizons Map Combo Downloads</h2>
 
-    <div class="load-list">
+<div class="load-list">
 
-      <div class="row"><div class="num">01</div><div class="name">FULLSCREEN 1.59</div><div class="updated">Updated: 30 May 2026</div><a class="btn" href="https://modsfire.com/Uk0tH6Z2mkT0xQA" target="_blank">Download</a></div>
-      <div class="row"><div class="num">02</div><div class="name">ETS2 GLOBAL BACKGROUND MAP + GRAND UTOPIA V2.8</div><a class="btn" href="https://mods.to/NROe6a0a0ce7a2699/" target="_blank">Download</a></div>
-      <div class="row"><div class="num">03</div><div class="name">UNIVERSAL FIX LOCALIZATION</div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/map-patches/universal-fix-localization-583165" target="_blank">Download</a></div>
-      <div class="row"><div class="num">04</div><div class="name">ULTIMATE MAP COMBO FIX PROMODS 1.59-1.1.1</div><a class="btn" href="https://modsfire.com/CA3nquJ775E384y" target="_blank">Download</a></div>
-      <div class="row"><div class="num">05</div><div class="name">ULTIMATE MAP COMBO FIX 1.59-1.6.1</div><a class="btn" href="https://modsfire.com/7Gz4S6HX2s93j87" target="_blank">Download</a></div>
+<div class="row"><div class="num">01</div><div class="name">FULLSCREEN 1.59</div><div class="updated">30 May 2026</div><a class="btn" href="https://modsfire.com/Uk0tH6Z2mkT0xQA" target="_blank">Download</a></div>
 
-      <div class="row"><div class="num">06</div><div class="name">ABKHAZIA MAP 1.6 <span class="note">Only for SRMAP 13.1</span></div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/maps/abkhazia-map-675817" target="_blank">Download</a></div>
-      <div class="row"><div class="num">07</div><div class="name">PROMODS / SRMAP RC</div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/maps/promods-srmap-roadconnection" target="_blank">Download</a></div>
-      <div class="row"><div class="num">08</div><div class="name">1.59 HYBRID2</div><a class="btn" href="https://sharemods.com/jeu183erkuzg/159Hybrid2.scs.html" target="_blank">Download</a></div>
+<div class="row"><div class="num">02</div><div class="name">ETS2 GLOBAL BACKGROUND MAP + GRAND UTOPIA V2.8</div><div class="updated">30 May 2026</div><a class="btn" href="https://mods.to/NROe6a0a0ce7a2699/" target="_blank">Download</a></div>
 
-      <div class="row"><div class="num">09</div><div class="name">ROEX EngCityNames</div><a class="btn" href="https://sharemods.com/yu0o7mizfyll/ROEXengnames.scs.html" target="_blank">Download</a></div>
-      <div class="row"><div class="num">10</div><div class="name">ROEX 5.1/1</div><a class="btn" href="https://sharemods.com/qadmijixjf7d/51RXF1.scs.html" target="_blank">Download</a></div>
-      <div class="row"><div class="num">11</div><div class="name">ROEX 5.1/2</div><a class="btn" href="https://sharemods.com/p86ol437b038/51RXF2.scs.html" target="_blank">Download</a></div>
-      <div class="row"><div class="num">12</div><div class="name">ROEX 5.1/3</div><a class="btn" href="https://sharemods.com/kinf0ci507jc/51RXF3.scs.html" target="_blank">Download</a></div>
-      <div class="row"><div class="num">13</div><div class="name">ROEX 5.1/4</div><a class="btn" href="https://sharemods.com/zwcgf7obxhiu/51RXF4.scs.html" target="_blank">Download</a></div>
+<div class="row"><div class="num">03</div><div class="name">Ultimate Map Combo Fix (ProMods Patch)</div><div class="updated">30 May 2026</div><a class="btn" href="https://modsfire.com/CA3nquJ775E384y" target="_blank">Download</a></div>
 
-      <div class="row"><div class="num">14</div><div class="name">KIROV MAP 1.7 FREE</div><a class="btn" href="https://sharemods.com/xvgia5x2iqqs/KirovMap_17_FREE.scs.html" target="_blank">Download</a></div>
-      <div class="row"><div class="num">15</div><div class="name">ROAD TO CAUCASUS / TGS RC</div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/maps/road-to-caucasus-promods-the-great-steppe-road-connector" target="_blank">Download</a></div>
-      <div class="row"><div class="num">16</div><div class="name">ROAD TO CAUCASUS / PROMODS RC</div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/maps/road-to-caucasus-promods-road-connector#nav-builds" target="_blank">Download</a></div>
-      <div class="row"><div class="num">17</div><div class="name">ROAD TO CAUCASUS / RUSMAP RC</div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/maps/road-to-caucasus-rusmap-aldimator-road-connector" target="_blank">Download</a></div>
-      <div class="row"><div class="num">18</div><div class="name">RUSMAP aldi</div><a class="btn" href="https://modsfire.com/9llvtqvi81J6kCg" target="_blank">Download</a></div>
-      <div class="row"><div class="num">19</div><div class="name">ROAD TO CAUCASUS 2.7</div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/maps/road-to-caucasus" target="_blank">Download</a></div>
+<div class="row"><div class="num">04</div><div class="name">Ultimate Map Combo Fix (ETS2)</div><div class="updated">30 May 2026</div><a class="btn" href="https://modsfire.com/7Gz4S6HX2s93j87" target="_blank">Download</a></div>
 
-      <div class="row"><div class="num">20</div><div class="name">SUD DE FRANCE / PROMODS FIX</div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/map-patches/sud-de-france-promods-fix-607830" target="_blank">Download</a></div>
-      <div class="row"><div class="num">21</div><div class="name">SUD DE FRANCE v2.0.4</div><a class="btn" href="https://sharemods.com/vnhg3jkclmre/_v2.0.4__PUBLIC_Sud_de_France_by_Charly.scs.html" target="_blank">Download</a></div>
+<div class="row"><div class="num">05</div><div class="name">PROMODS / SRMAP RC</div><div class="updated">30 May 2026</div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/maps/promods-srmap-roadconnection" target="_blank">Download</a></div>
 
-      <div class="row"><div class="num">22</div><div class="name">ROAD INTO WILDERNESS FIX</div><a class="btn soon" href="#">Coming Soon</a></div>
-      <div class="row"><div class="num">23</div><div class="name">ROAD INTO WILDERNESS 3.2</div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/maps/road-into-wilderness#nav-builds" target="_blank">Download</a></div>
+<div class="row"><div class="num">06</div><div class="name">1.59 HYBRID2</div><div class="updated">30 May 2026</div><a class="btn" href="https://sharemods.com/jeu183erkuzg/159Hybrid2.scs.html" target="_blank">Download</a></div>
 
-      <div class="row"><div class="num">24</div><div class="name">PROMODS MIDDLE EAST</div><a class="btn" href="https://promods.net/setup.php?game=me" target="_blank">Download</a></div>
-      <div class="row"><div class="num">25</div><div class="name">EUROPEAN GRAND UTOPIA FOR PROMODS</div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/maps/european-grand-utopia#nav-builds" target="_blank">Download</a></div>
-      <div class="row"><div class="num">26</div><div class="name">PROMODS EUROPE 2.82 HOTFIX</div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/map-patches/promods-europe-280-fix-qol-344932" target="_blank">Download</a></div>
-      <div class="row"><div class="num">27</div><div class="name">PROMODS 2.82</div><a class="btn" href="https://promods.net/setup.php?game=ets" target="_blank">Download</a></div>
+<div class="row"><div class="num">07</div><div class="name">ROEX (EngCityNames)</div><div class="updated">30 May 2026</div><a class="btn" href="https://sharemods.com/yu0o7mizfyll/ROEXengnames.scs.html" target="_blank">Download</a></div>
 
-      <div class="row"><div class="num">28</div><div class="name">BEYOND FIX</div><a class="btn soon" href="#">Coming Soon</a></div>
-      <div class="row"><div class="num">29</div><div class="name">BEYOND V9</div><a class="btn" href="https://terramaps.net/download/view.php?game=beyondets2" target="_blank">Download</a></div>
+<div class="row"><div class="num">08</div><div class="name">ROEX 5.1/1</div><div class="updated">30 May 2026</div><a class="btn" href="https://sharemods.com/qadmijixjf7d/51RXF1.scs.html" target="_blank">Download</a></div>
 
-      <div class="row"><div class="num">30</div><div class="name">SRMAP FIX <span class="note">Only for SRMAP 13.1</span></div><a class="btn" href="https://sharemods.com/wirq6eshq6kg/tdo.srmap.fix.scs.html" target="_blank">Download</a></div>
-      <div class="row"><div class="num">31</div><div class="name">SRMAP 13.1</div><a class="btn" href="https://modsfire.com/6Hd64rb873NhhlF" target="_blank">Download</a></div>
-      <div class="row"><div class="num">32</div><div class="name">ROAD TO ARAL</div><a class="btn" href="https://modsfire.com/download/DHelmg4SemZi1K1/60db2" target="_blank">Download</a></div>
-      <div class="row"><div class="num">33</div><div class="name">TGS / REP OF KAZAKHSTAN RC + FIX</div><a class="btn" href="https://modsfire.com/j25Sv4N18EGZ0RW" target="_blank">Download</a></div>
+<div class="row"><div class="num">09</div><div class="name">ROEX 5.1/2</div><div class="updated">30 May 2026</div><a class="btn" href="https://sharemods.com/p86ol437b038/51RXF2.scs.html" target="_blank">Download</a></div>
 
-      <div class="row"><div class="num">34</div><div class="name">PROMODS THE GREAT STEPPE</div><a class="btn" href="https://promods.net/setup.php?game=ets" target="_blank">ProMods</a></div>
-      <div class="row"><div class="num">35</div><div class="name">EUROPEAN GRAND UTOPIA</div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/maps/european-grand-utopia" target="_blank">Download</a></div>
-      <div class="row"><div class="num">36</div><div class="name">GRAND UTOPIA 1.19.4</div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/maps/grand-utopia-map" target="_blank">Download</a></div>
+<div class="row"><div class="num">10</div><div class="name">ROEX 5.1/3</div><div class="updated">30 May 2026</div><a class="btn" href="https://sharemods.com/kinf0ci507jc/51RXF3.scs.html" target="_blank">Download</a></div>
 
-    </div>
-  </div>
+<div class="row"><div class="num">11</div><div class="name">ROEX 5.1/4</div><div class="updated">30 May 2026</div><a class="btn" href="https://sharemods.com/zwcgf7obxhiu/51RXF4.scs.html" target="_blank">Download</a></div>
 
-  <footer>
-    🌍 RS Horizons V1 • Created by Rays Sim & Mr.Swede • One World. Endless Roads.
-  </footer>
+<div class="row"><div class="num">12</div><div class="name">ROAD TO CAUCASUS / TGS RC</div><div class="updated">30 May 2026</div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/maps/road-to-caucasus-promods-the-great-steppe-road-connector" target="_blank">Download</a></div>
+
+<div class="row"><div class="num">13</div><div class="name">ROAD TO CAUCASUS / PROMODS RC</div><div class="updated">30 May 2026</div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/maps/road-to-caucasus-promods-road-connector#nav-builds" target="_blank">Download</a></div>
+
+<div class="row"><div class="num">14</div><div class="name">ROAD TO CAUCASUS / RUSMAP RC</div><div class="updated">30 May 2026</div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/maps/road-to-caucasus-rusmap-aldimator-road-connector" target="_blank">Download</a></div>
+
+<div class="row"><div class="num">15</div><div class="name">RUSMAP (Aldi)</div><div class="updated">30 May 2026</div><a class="btn" href="https://modsfire.com/9llvtqvi81J6kCg" target="_blank">Download</a></div>
+
+<div class="row"><div class="num">16</div><div class="name">ROAD TO CAUCASUS 2.7</div><div class="updated">30 May 2026</div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/maps/road-to-caucasus" target="_blank">Download</a></div>
+
+<div class="row"><div class="num">17</div><div class="name">The Cold North Map</div><div class="updated">30 May 2026</div><a class="btn" href="https://sharemods.com/038tote44f3s/sweden.scs.html" target="_blank">Download</a></div>
+
+<div class="row"><div class="num">18</div><div class="name">Vänern Project</div><div class="updated">30 May 2026</div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/maps/vanern-project-950227" target="_blank">Download</a></div>
+
+<div class="row"><div class="num">19</div><div class="name">Skandinavien Södra Expansion</div><div class="updated">30 May 2026</div><a class="btn" href="https://modsfire.com/kU8FTND13Mp55ir" target="_blank">Download</a></div>
+
+<div class="row"><div class="num">20</div><div class="name">Bulgaria in Focus</div><div class="updated">30 May 2026</div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/maps/bulgaria-in-focus" target="_blank">Download</a></div>
+
+<div class="row"><div class="num">21</div><div class="name">EuPlus+</div><div class="updated">30 May 2026</div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/maps/euplus-793622" target="_blank">Download</a></div>
+
+<div class="row"><div class="num">22</div><div class="name">Danmark Refined v2.2.1</div><div class="updated">30 May 2026</div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/maps/danmark-refined-115954" target="_blank">Download</a></div>
+
+<div class="row"><div class="num">23</div><div class="name">SUD DE FRANCE / PROMODS FIX</div><div class="updated">30 May 2026</div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/map-patches/sud-de-france-promods-fix-607830" target="_blank">Download</a></div>
+
+<div class="row"><div class="num">24</div><div class="name">SUD DE FRANCE v2.0.4</div><div class="updated">30 May 2026</div><a class="btn" href="https://sharemods.com/vnhg3jkclmre/_v2.0.4__PUBLIC_Sud_de_France_by_Charly.scs.html" target="_blank">Download</a></div>
+
+<div class="row"><div class="num">25</div><div class="name">More European Cities ProMods Fix</div><div class="updated">30 May 2026</div><a class="btn" href="https://modsfire.com/e03Y17c6p6942uF" target="_blank">Download</a></div>
+
+<div class="row"><div class="num">26</div><div class="name">More European Cities v1.0</div><div class="updated">30 May 2026</div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/maps/more-european-cities-543119" target="_blank">Download</a></div>
+
+<div class="row"><div class="num">27</div><div class="name">Portugal Rebuild 0.1.7 Promods addon</div><div class="updated">30 May 2026</div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/maps/portugal-rebuild-v01" target="_blank">Download</a></div>
+
+<div class="row"><div class="num">28</div><div class="name">Ireland Map Fix</div><div class="updated">30 May 2026</div><a class="btn" href="https://mods.to/PAlX6a09af4bed0df" target="_blank">Download</a></div>
+
+<div class="row"><div class="num">29</div><div class="name">Ireland Map 0.1.1</div><div class="updated">30 May 2026</div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/maps/ireland-map-promods-add-on-mod" target="_blank">Download</a></div>
+
+<div class="row"><div class="num">30</div><div class="name">Trucksmap UK v1.5b</div><div class="updated">30 May 2026</div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/maps/v10-trucksmap-uk-909057" target="_blank">Download</a></div>
+
+<div class="row"><div class="num">31</div><div class="name">ROAD INTO WILDERNESS 3.2</div><div class="updated">30 May 2026</div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/maps/road-into-wilderness#nav-builds" target="_blank">Download</a></div>
+
+<div class="row"><div class="num">32</div><div class="name">PROMODS MIDDLE EAST</div><div class="updated">30 May 2026</div><a class="btn" href="https://promods.net/setup.php?game=me" target="_blank">Download</a></div>
+
+<div class="row"><div class="num">33</div><div class="name">ABKHAZIA MAP 1.6<span class="note">Only for SRMAP 13.1</span></div><div class="updated">30 May 2026</div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/maps/abkhazia-map-675817" target="_blank">Download</a></div>
+
+<div class="row"><div class="num">34</div><div class="name">EUROPEAN GRAND UTOPIA FOR PROMODS</div><div class="updated">30 May 2026</div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/maps/european-grand-utopia#nav-builds" target="_blank">Download</a></div>
+
+<div class="row"><div class="num">35</div><div class="name">PROMODS 2.82</div><div class="updated">30 May 2026</div><a class="btn" href="https://promods.net/setup.php?game=ets" target="_blank">Download</a></div>
+
+<div class="row"><div class="num">36</div><div class="name">ROAD TO ARAL</div><div class="updated">30 May 2026</div><a class="btn" href="https://modsfire.com/download/DHelmg4SemZi1K1/60db2" target="_blank">Download</a></div>
+
+<div class="row"><div class="num">37</div><div class="name">SRMAP FIX<span class="note">Only for SRMAP 13.1</span></div><div class="updated">30 May 2026</div><a class="btn" href="https://sharemods.com/wirq6eshq6kg/tdo.srmap.fix.scs.html" target="_blank">Download</a></div>
+
+<div class="row"><div class="num">38</div><div class="name">SRMAP 13.1</div><div class="updated">30 May 2026</div><a class="btn" href="https://modsfire.com/6Hd64rb873NhhlF" target="_blank">Download</a></div>
+
+<div class="row"><div class="num">39</div><div class="name">PROMODS THE GREAT STEPPE</div><div class="updated">30 May 2026</div><a class="btn" href="https://promods.net/setup.php?game=ets" target="_blank">ProMods</a></div>
+
+<div class="row"><div class="num">40</div><div class="name">EUROPEAN GRAND UTOPIA</div><div class="updated">30 May 2026</div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/maps/european-grand-utopia" target="_blank">Download</a></div>
+
+<div class="row"><div class="num">41</div><div class="name">GRAND UTOPIA 1.19.4</div><div class="updated">30 May 2026</div><a class="btn" href="https://truckymods.io/euro-truck-simulator-2/maps/grand-utopia-map" target="_blank">Download</a></div>
+
+</div>
+</div>
+
+<footer>
+🌍 RS Horizons V1 • Created by Rays Sim & Mr.Swede • One World. Endless Roads.
+</footer>
 
 </body>
 </html>
