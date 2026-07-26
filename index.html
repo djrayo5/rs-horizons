@@ -3,467 +3,575 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RS Horizons V1 — Official Map Combo Hub</title>
+<title>RS Horizons V1 — Map Combo & Load Order Portal</title>
 
-<!-- Modern Fonts & Icons -->
+<!-- Fonts & Icons -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
 :root {
-  --bg-dark: #07090e;
-  --bg-surface: #0f1523;
-  --panel-bg: rgba(18, 26, 43, 0.7);
-  --panel-border: rgba(255, 255, 255, 0.08);
-  --accent-cyan: #38bdf8;
-  --accent-cyan-glow: rgba(56, 189, 248, 0.25);
-  --accent-purple: #8b5cf6;
-  --accent-purple-hover: #7c3aed;
-  --text-main: #f8fafc;
-  --text-sub: #94a3b8;
+  --bg-dark: #06080e;
+  --bg-card: rgba(15, 23, 42, 0.75);
+  --bg-card-hover: rgba(30, 41, 59, 0.85);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-cyan: rgba(56, 189, 248, 0.3);
+  
+  --cyan: #38bdf8;
+  --cyan-glow: rgba(56, 189, 248, 0.25);
+  --purple: #8b5cf6;
+  --purple-glow: rgba(139, 92, 246, 0.3);
+  --emerald: #10b981;
+  --amber: #f59e0b;
+  
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
   --text-muted: #64748b;
-  --gold: #f59e0b;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   background-color: var(--bg-dark);
   background-image: 
-    radial-gradient(circle at 50% -10%, rgba(56, 189, 248, 0.15), transparent 50%),
-    radial-gradient(circle at 80% 100%, rgba(139, 92, 246, 0.1), transparent 50%);
-  color: var(--text-main);
+    radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.12), transparent 45%),
+    radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.08), transparent 50%);
+  color: var(--text-primary);
   line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/* Header & Hero Section */
-.hero {
-  padding: 56px 24px 36px;
-  text-align: center;
-  max-width: 1000px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* Glass Header Nav */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(6, 8, 14, 0.8);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-color);
+  padding: 12px 24px;
 }
 
-.logo-container {
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.nav-logo {
+  height: 38px;
+  width: auto;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease;
+}
+
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+.nav-btn.discord { background: #5865F2; border: none; }
+.nav-btn.youtube { background: #FF0000; border: none; }
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 50px 20px 30px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.main-logo-wrap {
   position: relative;
   display: inline-block;
   margin-bottom: 24px;
 }
 
-.logo {
-  max-width: 310px;
+.main-logo {
+  max-width: 320px;
   width: 90%;
   height: auto;
-  display: block;
-  filter: drop-shadow(0 0 25px rgba(56, 189, 248, 0.25));
+  filter: drop-shadow(0 0 30px var(--cyan-glow));
 }
 
-.version-tag {
+.hero-pill {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   background: rgba(56, 189, 248, 0.1);
-  border: 1px solid rgba(56, 189, 248, 0.3);
-  color: var(--accent-cyan);
+  border: 1px solid var(--border-cyan);
+  color: var(--cyan);
   padding: 6px 16px;
-  border-radius: 20px;
+  border-radius: 30px;
   font-size: 0.8rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin-bottom: 20px;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
 }
 
-.version-tag i { font-size: 0.7rem; }
+.hero-pill i { font-size: 0.75rem; }
 
 h1 {
-  font-size: 2.75rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  background: linear-gradient(135deg, #ffffff 30%, var(--accent-cyan) 100%);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #ffffff 40%, var(--cyan) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 16px;
-  line-height: 1.2;
+  margin-bottom: 14px;
 }
 
-.intro {
+.hero-desc {
   font-size: 1.05rem;
-  color: var(--text-sub);
-  line-height: 1.7;
-  max-width: 760px;
-  margin: 0 auto 32px;
-  padding: 0 12px;
+  color: var(--text-secondary);
+  max-width: 680px;
+  margin: 0 auto 30px;
 }
 
-/* Community Buttons */
-.button-group {
+/* Stats Ribbon */
+.stats-grid {
   display: flex;
   justify-content: center;
-  gap: 16px;
+  gap: 24px;
+  margin-bottom: 40px;
   flex-wrap: wrap;
-  margin-bottom: 32px;
-  width: 100%;
 }
 
-.btn-community {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
   padding: 12px 24px;
   border-radius: 12px;
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-decoration: none;
-  color: white;
-  transition: all 0.25s ease;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-.btn-community:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
-}
-
-.btn-discord { background: #5865F2; }
-.btn-youtube { background: #FF0000; }
-.btn-shop { background: #059669; }
-
-/* Notice Banner */
-.notice-card {
-  background: rgba(245, 158, 11, 0.08);
-  border: 1px solid rgba(245, 158, 11, 0.25);
-  color: #fcd34d;
-  padding: 14px 24px;
-  border-radius: 12px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  max-width: 800px;
-  width: 100%;
-  margin: 0 auto 40px;
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 12px;
 }
 
-/* Main Hub Container — Widened for cleaner spacing */
-.main-wrapper {
-  max-width: 1080px;
+.stat-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-val {
+  font-weight: 800;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.stat-lbl {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Main Hub Wrapper */
+.portal-wrapper {
+  max-width: 1100px;
   width: 100%;
-  margin: 0 auto 60px;
-  padding: 0 24px;
+  margin: 0 auto 80px;
+  padding: 0 20px;
   flex: 1;
 }
 
-/* Search Bar & Stats Bar */
-.search-bar-wrapper {
-  display: flex;
-  gap: 12px;
+/* Game Switcher Tabs */
+.game-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
   margin-bottom: 28px;
 }
 
-.search-field-container {
+.game-tab-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 18px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
   position: relative;
-  flex: 1;
+  overflow: hidden;
 }
 
-.search-field-container i {
+.game-tab-btn:hover {
+  background: var(--bg-card-hover);
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.game-tab-btn.active {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+  border-color: var(--cyan);
+  color: var(--text-primary);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.game-tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--cyan);
+}
+
+.tab-count {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--border-color);
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: var(--cyan);
+}
+
+/* Controls Bar */
+.controls-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.search-box {
+  flex: 1;
+  position: relative;
+  min-width: 280px;
+}
+
+.search-box i {
   position: absolute;
   left: 18px;
   top: 50%;
   transform: translateY(-50%);
   color: var(--text-muted);
-  font-size: 0.95rem;
 }
 
 .search-input {
   width: 100%;
-  padding: 16px 20px 16px 48px;
-  border-radius: 14px;
-  border: 1px solid var(--panel-border);
-  background: var(--bg-surface);
-  color: var(--text-main);
-  font-size: 0.95rem;
+  padding: 14px 18px 14px 48px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  color: var(--text-primary);
   font-family: inherit;
+  font-size: 0.95rem;
   outline: none;
   transition: all 0.2s ease;
 }
 
 .search-input:focus {
-  border-color: var(--accent-cyan);
-  box-shadow: 0 0 0 4px var(--accent-cyan-glow);
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 4px var(--cyan-glow);
 }
 
-/* Navigation Tabs */
-.tabs-navigation {
-  display: flex;
-  background: var(--bg-surface);
-  border: 1px solid var(--panel-border);
-  padding: 6px;
-  border-radius: 16px;
-  gap: 8px;
-  margin-bottom: 28px;
-}
-
-.tab-btn {
-  flex: 1;
-  display: flex;
+.btn-utility {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 14px 20px;
-  border: none;
-  background: transparent;
-  color: var(--text-sub);
-  font-family: inherit;
-  font-size: 0.95rem;
-  font-weight: 700;
+  gap: 8px;
+  padding: 0 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.tab-btn:hover {
-  color: var(--text-main);
-  background: rgba(255, 255, 255, 0.03);
+.btn-utility:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--cyan);
 }
 
-.tab-btn.active {
-  background: var(--accent-cyan);
-  color: #07090e;
-  box-shadow: 0 4px 15px var(--accent-cyan-glow);
-}
+/* Mod Cards List */
+.tab-content { display: none; }
+.tab-content.active { display: flex; flex-direction: column; gap: 12px; }
 
-.tab-badge {
-  background: rgba(0, 0, 0, 0.2);
-  padding: 3px 10px;
-  border-radius: 12px;
-  font-size: 0.78rem;
-}
-
-/* Download Cards List */
-.tab-pane {
-  display: none;
-}
-
-.tab-pane.active {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.mod-card {
+.mod-row-card {
   display: grid;
-  grid-template-columns: 52px 1fr 130px;
+  grid-template-columns: 56px 1fr 140px;
   align-items: center;
   gap: 20px;
-  background: var(--panel-bg);
-  border: 1px solid var(--panel-border);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
   border-radius: 14px;
-  padding: 16px 22px;
-  backdrop-filter: blur(12px);
-  transition: all 0.2s ease;
+  padding: 16px 20px;
+  transition: all 0.25s ease;
 }
 
-.mod-card:hover {
-  background: rgba(24, 34, 56, 0.9);
-  border-color: rgba(56, 189, 248, 0.4);
+.mod-row-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-cyan);
   transform: translateX(4px);
 }
 
-/* Order Badge */
-.mod-order {
-  font-weight: 800;
-  font-size: 0.9rem;
-  color: var(--accent-cyan);
-  background: rgba(56, 189, 248, 0.1);
-  border: 1px solid rgba(56, 189, 248, 0.2);
-  width: 42px;
-  height: 42px;
+.order-badge {
+  width: 44px;
+  height: 44px;
   border-radius: 10px;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  color: var(--cyan);
+  font-weight: 800;
+  font-size: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Primary File Name Styling */
+.mod-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
 .mod-title {
-  font-size: 0.98rem;
-  font-weight: 600;
-  color: var(--accent-cyan);
-  line-height: 1.5;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
   word-break: break-word;
 }
 
-/* Download Button */
-.btn-download-mod {
+.mod-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.btn-download {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: var(--accent-purple);
-  color: #ffffff !important;
+  padding: 10px 18px;
+  background: linear-gradient(135deg, var(--purple) 0%, #7c3aed 100%);
+  color: #fff !important;
   text-decoration: none !important;
-  font-size: 0.85rem;
   font-weight: 700;
-  padding: 11px 16px;
+  font-size: 0.85rem;
   border-radius: 10px;
+  box-shadow: 0 4px 15px var(--purple-glow);
   transition: all 0.2s ease;
-  box-shadow: 0 2px 10px rgba(139, 92, 246, 0.25);
 }
 
-.btn-download-mod:hover {
-  background: var(--accent-purple-hover);
-  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+.btn-download:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
 }
 
-.btn-download-mod.disabled {
+.btn-download.disabled {
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
   color: var(--text-muted) !important;
+  border: 1px solid var(--border-color);
   box-shadow: none;
   cursor: not-allowed;
   pointer-events: none;
 }
 
-.state-message {
+/* Loading & Empty States */
+.state-box {
   text-align: center;
-  padding: 48px 24px;
-  color: var(--text-sub);
-  background: var(--bg-surface);
-  border: 1px dashed var(--panel-border);
-  border-radius: 14px;
-  font-size: 0.95rem;
+  padding: 60px 20px;
+  background: var(--bg-card);
+  border: 1px dashed var(--border-color);
+  border-radius: 16px;
+  color: var(--text-secondary);
 }
 
+.state-box i {
+  font-size: 2rem;
+  color: var(--cyan);
+  margin-bottom: 12px;
+}
+
+/* Footer */
 footer {
+  margin-top: auto;
+  background: rgba(6, 8, 14, 0.95);
+  border-top: 1px solid var(--border-color);
+  padding: 32px 20px;
   text-align: center;
-  padding: 36px 24px;
-  border-top: 1px solid var(--panel-border);
-  background: rgba(7, 9, 14, 0.8);
   color: var(--text-muted);
   font-size: 0.85rem;
 }
 
-/* Mobile Alignment */
-@media (max-width: 640px) {
-  .hero {
-    padding: 36px 16px 24px;
-  }
-
-  h1 {
-    font-size: 2rem;
-  }
-
-  .mod-card {
-    grid-template-columns: 40px 1fr;
-    gap: 14px;
-    padding: 14px 16px;
-  }
-  
-  .mod-order {
-    width: 36px;
-    height: 36px;
-    font-size: 0.8rem;
-  }
-
-  .mod-title {
-    font-size: 0.9rem;
-  }
-
-  .btn-download-mod {
-    grid-column: 1 / -1;
-    width: 100%;
-    margin-top: 6px;
-  }
+/* Responsive Rules */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .game-tabs { grid-template-columns: 1fr; }
+  .mod-row-card { grid-template-columns: 44px 1fr; gap: 14px; }
+  .btn-download { grid-column: 1 / -1; width: 100%; margin-top: 4px; }
 }
 </style>
 </head>
 
 <body>
 
-<header class="hero">
-  <div class="logo-container">
-    <img src="RSHLogo.png" class="logo" alt="RS Horizons Logo">
+<!-- Top Glass Navbar -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="#" class="nav-brand">
+      <img src="RSHLogo.png" class="nav-logo" alt="RS Horizons Hub">
+    </a>
+    <div class="nav-links">
+      <a href="https://discord.com/invite/nmPuEYtmhZ" target="_blank" class="nav-btn discord">
+        <i class="fa-brands fa-discord"></i> Discord
+      </a>
+      <a href="https://www.youtube.com/@RaysSim" target="_blank" class="nav-btn youtube">
+        <i class="fa-brands fa-youtube"></i> YouTube
+      </a>
+      <a href="https://rays-sim-shop.fourthwall.com/" target="_blank" class="nav-btn">
+        <i class="fa-solid fa-bag-shopping"></i> Shop
+      </a>
+    </div>
   </div>
-  
-  <div class="version-tag">
-    <i class="fa-solid fa-circle-dot"></i> Official Load Orders & Downloads
-  </div>
-  
-  <h1>RS Horizons V1</h1>
+</nav>
 
-  <p class="intro">
-    One World. Endless Roads. Experience a massive connected ETS2 & ATS expansion combining premier map mods into one ultimate long-haul universe. Created by <strong>Rays Sim</strong> & <strong>Mr.Swede</strong>.
+<!-- Hero Section -->
+<header class="hero">
+  <div class="main-logo-wrap">
+    <img src="RSHLogo.png" class="main-logo" alt="RS Horizons V1">
+  </div>
+  
+  <div class="hero-pill">
+    <i class="fa-solid fa-layer-group"></i> Official Load Orders & Downloads
+  </div>
+
+  <h1>RS Horizons V1 Map Combo</h1>
+  
+  <p class="hero-desc">
+    Experience a seamlessly connected truck simulator universe. Browse tested load order positions, download required map files, and keep your game crash-free.
   </p>
 
-  <div class="button-group">
-    <a class="btn-community btn-discord" href="https://discord.com/invite/nmPuEYtmhZ" target="_blank">
-      <i class="fa-brands fa-discord"></i> Discord Community
-    </a>
-    <a class="btn-community btn-youtube" href="https://www.youtube.com/@RaysSim" target="_blank">
-      <i class="fa-brands fa-youtube"></i> YouTube Channel
-    </a>
-    <a class="btn-community btn-shop" href="https://rays-sim-shop.fourthwall.com/" target="_blank">
-      <i class="fa-solid fa-bag-shopping"></i> Merch Shop
-    </a>
-  </div>
-
-  <div class="notice-card">
-    <i class="fa-solid fa-triangle-exclamation"></i>
-    <span>Requires all official Map DLCs. Follow the load order numbers exactly to prevent game crashes.</span>
+  <!-- Quick Stats -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon"><i class="fa-solid fa-truck-front"></i></div>
+      <div>
+        <div class="stat-val" id="stat-ets2-count">0</div>
+        <div class="stat-lbl">ETS2 Files</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon"><i class="fa-solid fa-truck"></i></div>
+      <div>
+        <div class="stat-val" id="stat-ats-count">0</div>
+        <div class="stat-lbl">ATS Files</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon" style="color: var(--emerald); background: rgba(16,185,129,0.15);"><i class="fa-solid fa-shield-halved"></i></div>
+      <div>
+        <div class="stat-val" style="color: var(--emerald);">V1 Ready</div>
+        <div class="stat-lbl">Status</div>
+      </div>
+    </div>
   </div>
 </header>
 
-<main class="main-wrapper">
-  <!-- Search Field -->
-  <div class="search-bar-wrapper">
-    <div class="search-field-container">
+<!-- Main Portal Container -->
+<main class="portal-wrapper">
+
+  <!-- Dual Game Tabs -->
+  <div class="game-tabs">
+    <button class="game-tab-btn active" id="tab-btn-ets2" onclick="switchGame('ets2')">
+      <i class="fa-solid fa-truck-front"></i>
+      <span>Euro Truck Simulator 2</span>
+      <span class="tab-count" id="count-badge-ets2">0</span>
+    </button>
+    <button class="game-tab-btn" id="tab-btn-ats" onclick="switchGame('ats')">
+      <i class="fa-solid fa-truck"></i>
+      <span>American Truck Simulator</span>
+      <span class="tab-count" id="count-badge-ats">0</span>
+    </button>
+  </div>
+
+  <!-- Controls Bar -->
+  <div class="controls-row">
+    <div class="search-box">
       <i class="fa-solid fa-magnifying-glass"></i>
-      <input type="text" id="searchInput" class="search-input" placeholder="Search map files, connectors, or fix packages..." onkeyup="filterMods()">
+      <input type="text" id="searchInput" class="search-input" placeholder="Search files, map fixes, connectors..." onkeyup="filterMods()">
     </div>
-  </div>
-
-  <!-- Navigation Tabs -->
-  <div class="tabs-navigation">
-    <button class="tab-btn active" onclick="switchTab('ets2')" id="tab-ets2">
-      <i class="fa-solid fa-truck-front"></i> Euro Truck Simulator 2
-      <span class="tab-badge" id="count-ets2">0</span>
-    </button>
-    <button class="tab-btn" onclick="switchTab('ats')" id="tab-ats">
-      <i class="fa-solid fa-truck"></i> American Truck Simulator
-      <span class="tab-badge" id="count-ats">0</span>
+    <button class="btn-utility" onclick="copyLoadOrder()">
+      <i class="fa-solid fa-copy"></i> Copy Order List
     </button>
   </div>
 
-  <!-- ETS2 Content Tab -->
-  <div class="tab-pane active" id="pane-ets2">
-    <div class="state-message">
-      <i class="fa-solid fa-circle-notch fa-spin"></i> Fetching ETS2 map combo list...
+  <!-- ETS2 Content Container -->
+  <div class="tab-content active" id="tab-pane-ets2">
+    <div class="state-box">
+      <i class="fa-solid fa-circle-notch fa-spin"></i>
+      <p>Fetching ETS2 Map Combo setup...</p>
     </div>
   </div>
 
-  <!-- ATS Content Tab -->
-  <div class="tab-pane" id="pane-ats">
-    <div class="state-message">
-      <i class="fa-solid fa-circle-notch fa-spin"></i> Fetching ATS map combo list...
+  <!-- ATS Content Container -->
+  <div class="tab-content" id="tab-pane-ats">
+    <div class="state-box">
+      <i class="fa-solid fa-circle-notch fa-spin"></i>
+      <p>Fetching ATS Map Combo setup...</p>
     </div>
   </div>
+
 </main>
 
 <footer>
-  🌍 RS Horizons V1 • Built with passion for the Truck Sim Community by Rays Sim & Mr.Swede
+  <p>RS Horizons V1 Hub • Created with passion by <strong>Rays Sim</strong> & <strong>Mr.Swede</strong></p>
 </footer>
 
 <script>
@@ -474,47 +582,32 @@ const ATS_GID = "0";
 const ETS2_CSV = `https://docs.google.com/spreadsheets/d/e/${PUB_ID}/pub?gid=${ETS2_GID}&single=true&output=csv`;
 const ATS_CSV  = `https://docs.google.com/spreadsheets/d/e/${PUB_ID}/pub?gid=${ATS_GID}&single=true&output=csv`;
 
-function cleanTitleOnly(str) {
+let currentActiveGame = 'ets2';
+const modDataStore = { ets2: [], ats: [] };
+
+function cleanText(str) {
   if (!str) return '';
-  
-  // Extract display text if it's formatted as Markdown or HTML links
-  let cleaned = str
+  return str
     .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
-    .replace(/<a\b[^>]*>(.*?)<\/a>/gi, '$1');
-
-  // If the cell was just a raw link, extract domain/filename hint or clean text
-  if (/^https?:\/\//i.test(cleaned.trim())) {
-    return cleaned.trim();
-  }
-
-  return cleaned
-    .replace(/https?:\/\/[^\s"'>)]+/gi, '') // Remove raw URLs
+    .replace(/<a\b[^>]*>(.*?)<\/a>/gi, '$1')
+    .replace(/https?:\/\/[^\s"'>)]+/gi, '')
     .replace(/[<>]/g, '')
-    .replace(/\\/g, '')
-    .replace(/^#+\s*/, '')
     .trim();
 }
 
 function extractUrl(cols) {
-  for (let i = 0; i < cols.length; i++) {
-    let val = cols[i];
+  for (let val of cols) {
     if (!val) continue;
-
     let match = val.match(/https?:\/\/[^\s"'>)]+/i);
     if (match) {
       let clean = match[0].replace(/[\\"]/g, '').trim();
-
       if (clean.includes("drive.google.com/file/d/")) {
         const fileId = clean.match(/\/d\/([^\/]+)/);
-        if (fileId && fileId[1]) {
-          return `https://drive.google.com/uc?export=download&id=${fileId[1]}`;
-        }
+        if (fileId && fileId[1]) return `https://drive.google.com/uc?export=download&id=${fileId[1]}`;
       }
-
       if (clean.includes("dropbox.com") && clean.includes("dl=0")) {
         return clean.replace("dl=0", "dl=1");
       }
-
       return clean;
     }
   }
@@ -543,10 +636,9 @@ function parseCSVLine(line) {
   return result;
 }
 
-async function loadList(csvUrl, elementId, badgeId) {
-  const container = document.getElementById(elementId);
-  const badge = document.getElementById(badgeId);
-
+async function loadGameList(csvUrl, gameKey) {
+  const container = document.getElementById(`tab-pane-${gameKey}`);
+  
   try {
     const response = await fetch(csvUrl);
     if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
@@ -555,99 +647,99 @@ async function loadList(csvUrl, elementId, badgeId) {
     const lines = text.split(/\r?\n/).filter(line => line.trim().length > 0);
     
     if (lines.length <= 1) {
-      container.innerHTML = '<div class="state-message">No map files currently listed in this category.</div>';
-      badge.textContent = '0';
+      container.innerHTML = '<div class="state-box"><p>No mod entries currently listed for this game.</p></div>';
       return;
     }
 
     container.innerHTML = '';
     const dataLines = lines.slice(1);
-    let validCount = 0;
+    modDataStore[gameKey] = [];
 
-    dataLines.forEach(line => {
+    dataLines.forEach((line) => {
       const cols = parseCSVLine(line);
       if (cols.length >= 1) {
-        const rawNum = cleanTitleOnly(cols[0]) || '-';
-        let rawName = cols[1] ? cleanTitleOnly(cols[1]) : '';
-        const downloadUrl = extractUrl(cols);
+        const orderNum = cleanText(cols[0]) || '-';
+        let name = cols[1] ? cleanText(cols[1]) : '';
+        const link = extractUrl(cols);
 
-        // If cell 1 was blank but cell 0 contains text that isn't just a number, use cell 0 as title
-        if (!rawName && cols[0] && isNaN(cols[0])) {
-          rawName = cleanTitleOnly(cols[0]);
-        }
+        if (!name && cols[0] && isNaN(cols[0])) name = cleanText(cols[0]);
+        if (!name || name === '---') return;
 
-        // If cell 1 was a raw URL, clean it to display nicely as a title
-        if (rawName.startsWith("http://") || rawName.startsWith("https://")) {
-          try {
-            const urlObj = new URL(rawName);
-            rawName = urlObj.pathname.split('/').pop() || urlObj.hostname;
-            rawName = decodeURIComponent(rawName).replace(/[-_]/g, ' ');
-          } catch(e) {
-            rawName = "Download File";
-          }
-        }
+        const item = { order: orderNum, name: name, url: link };
+        modDataStore[gameKey].push(item);
 
-        // Skip row only if completely empty or dashed separator
-        if (!rawName || rawName === '---') {
-          return;
-        }
-
-        validCount++;
         const card = document.createElement('div');
-        card.className = 'mod-card';
+        card.className = 'mod-row-card';
         
-        let buttonHtml = downloadUrl 
-          ? `<a class="btn-download-mod" href="${downloadUrl}" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-download"></i> Download</a>`
-          : `<span class="btn-download-mod disabled"><i class="fa-solid fa-lock"></i> No Link</span>`;
+        const actionBtn = link 
+          ? `<a class="btn-download" href="${link}" target="_blank" rel="noopener"><i class="fa-solid fa-download"></i> Download</a>`
+          : `<span class="btn-download disabled"><i class="fa-solid fa-lock"></i> No Link</span>`;
 
         card.innerHTML = `
-          <div class="mod-order">${rawNum}</div>
-          <div class="mod-title">${rawName}</div>
-          ${buttonHtml}
+          <div class="order-badge">${orderNum}</div>
+          <div class="mod-details">
+            <div class="mod-title">${name}</div>
+            <div class="mod-meta">
+              <span><i class="fa-solid fa-layer-group"></i> Mod Priority Position</span>
+            </div>
+          </div>
+          ${actionBtn}
         `;
         container.appendChild(card);
       }
     });
 
-    if (validCount === 0) {
-      container.innerHTML = '<div class="state-message">No map files currently listed in this category.</div>';
+    // Update Counts
+    const count = modDataStore[gameKey].length;
+    document.getElementById(`count-badge-${gameKey}`).textContent = count;
+    document.getElementById(`stat-${gameKey}-count`).textContent = count;
+
+    if (count === 0) {
+      container.innerHTML = '<div class="state-box"><p>No items found in spreadsheet.</p></div>';
     }
 
-    badge.textContent = validCount;
-
   } catch (err) {
-    console.error(`Error loading ${elementId}:`, err);
-    container.innerHTML = `
-      <div class="state-message" style="color: #f87171;">
-        <i class="fa-solid fa-triangle-exclamation"></i> Unable to load files from spreadsheet.
-      </div>`;
-    badge.textContent = '!';
+    console.error(`Error loading ${gameKey}:`, err);
+    container.innerHTML = `<div class="state-box" style="color: #f87171;"><i class="fa-solid fa-triangle-exclamation"></i><p>Unable to fetch load order from Google Sheet.</p></div>`;
   }
 }
 
-function switchTab(tab) {
-  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-  document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+function switchGame(game) {
+  currentActiveGame = game;
+  document.querySelectorAll('.game-tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
 
-  document.getElementById(`tab-${tab}`).classList.add('active');
-  document.getElementById(`pane-${tab}`).classList.add('active');
+  document.getElementById(`tab-btn-${game}`).classList.add('active');
+  document.getElementById(`tab-pane-${game}`).classList.add('active');
   filterMods();
 }
 
 function filterMods() {
   const query = document.getElementById('searchInput').value.toLowerCase();
-  const activePane = document.querySelector('.tab-pane.active');
-  const cards = activePane.querySelectorAll('.mod-card');
-  
+  const activeContainer = document.getElementById(`tab-pane-${currentActiveGame}`);
+  const cards = activeContainer.querySelectorAll('.mod-row-card');
+
   cards.forEach(card => {
     const title = card.querySelector('.mod-title').textContent.toLowerCase();
     card.style.display = title.includes(query) ? 'grid' : 'none';
   });
 }
 
-// Initial Load
-loadList(ETS2_CSV, 'pane-ets2', 'count-ets2');
-loadList(ATS_CSV, 'pane-ats', 'count-ats');
+function copyLoadOrder() {
+  const items = modDataStore[currentActiveGame];
+  if (!items || items.length === 0) return alert('No load order data available to copy!');
+  
+  const textList = items.map(i => `${i.order}. ${i.name}`).join('\n');
+  navigator.clipboard.writeText(textList).then(() => {
+    alert(`Copied ${items.length} ${currentActiveGame.toUpperCase()} items to clipboard!`);
+  }).catch(() => {
+    alert('Failed to copy to clipboard.');
+  });
+}
+
+// Initial Data Fetch
+loadGameList(ETS2_CSV, 'ets2');
+loadGameList(ATS_CSV, 'ats');
 </script>
 
 </body>
