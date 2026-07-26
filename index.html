@@ -1,11 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RS Horizons V1 — Official Map Combo Downloads</title>
+
+<!-- Modern Crisp Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg-dark: #080b11;
+  --panel-bg: #101726;
+  --card-bg: rgba(18, 26, 43, 0.85);
+  --card-hover: rgba(26, 38, 64, 0.95);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-highlight: rgba(56, 189, 248, 0.3);
+  --accent-cyan: #38bdf8;
+  --accent-purple: #8b5cf6;
+  --accent-purple-hover: #7c3aed;
+  --text-main: #f8fafc;
+  --text-sub: #cbd5e1;
+  --text-muted: #64748b;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-dark);
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.12), transparent 45%),
+    radial-gradient(circle at 50% 100%, rgba(139, 92, 246, 0.08), transparent 45%);
+  color: var(--text-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* Header & Hero */
+.hero {
+  padding: 48px 20px 24px;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.logo {
+  max-width: 280px;
+  width: 80%;
+  height: auto;
+  margin: 0 auto 20px;
+  display: block;
+  filter: drop-shadow(0 4px 20px rgba(56, 189, 248, 0.2));
+}
+
+h1 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.tagline {
+  font-size: 0.95rem;
+  color: var(--accent-cyan);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.intro {
+  font-size: 0.95rem;
+  color: var(--text-sub);
+  line-height: 1.6;
+  max-width: 640px;
+  margin: 0 auto 24px;
+}
+
+/* Header Buttons */
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.btn-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.btn-link:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+}
+
+.btn-discord { background: #5865F2; }
+.btn-youtube { background: #FF0000; }
+.btn-download { background: var(--accent-purple); }
+
+/* Notice Banner */
+.notice-box {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  color: #fbbf24;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+/* Search Bar */
+.search-container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: var(--panel-bg);
+  color: var(--text-main);
+  font-size: 0.9rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.search-input:focus {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+}
+
+/* Containers */
+.container {
+  max-width: 900px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: -0.01em;
+}
+
+.section-title::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 16px;
+  background: var(--accent-cyan);
+  border-radius: 2px;
+}
+
+/* Mod Card Rows */
+.mods-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mod-card {
+  display: grid;
+  grid-template-columns: 40px 1fr 130px 110px;
+  align-items: center;
+  gap: 14px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 10px 16px;
+  transition: all 0.15s ease;
+}
+
+.mod-card:hover {
+  background: var(--card-hover);
+  border-color: var(--border-highlight);
+}
+
+/* Number Badge */
+.mod-order {
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--accent-cyan);
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Clean Title Typography */
+.mod-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.35;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-break: break-word;
+}
+
+/* Metadata Badge */
+.mod-meta {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 4px 8px;
+  border-radius: 6px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Button */
+.btn-download-mod {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-purple);
+  color: white;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 7px 12px;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+  text-align: center;
+}
+
+.btn-download-mod:hover {
+  background: var(--accent-purple-hover);
+}
+
+.state-message {
+  text-align: center;
+  padding: 24px;
+  color: var(--text-muted);
+  background: var(--panel-bg);
+  border: 1px dashed var(--border-color);
+  border-radius: 10px;
+  font-size: 0.85rem;
+}
+
+footer {
+  text-align: center;
+  padding: 28px 20px;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+/* Mobile Alignment */
+@media (max-width: 680px) {
+  .mod-card {
+    grid-template-columns: 32px 1fr;
+    gap: 10px;
+    padding: 12px;
+  }
+  
+  .mod-title {
+    font-size: 0.875rem;
+  }
+
+  .mod-meta {
+    grid-column: 2 / -1;
+    text-align: left;
+    width: fit-content;
+  }
+
+  .btn-download-mod {
+    grid-column: 1 / -1;
+    width: 100%;
+    margin-top: 2px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="hero">
+  <img src="RSHLogo.png" class="logo" alt="RS Horizons Logo">
+  <h1>RS Horizons V1</h1>
+  <div class="tagline">One World. Endless Roads.</div>
+  
+  <p class="intro">
+    A connected ETS2 world expansion combining premier map projects into one seamless driving experience. Created by Rays Sim & Mr.Swede.
+  </p>
+
+  <div class="button-group">
+    <a class="btn-link btn-discord" href="https://discord.com/invite/nmPuEYtmhZ" target="_blank">Discord Community</a>
+    <a class="btn-link btn-youtube" href="https://www.youtube.com/@RaysSim" target="_blank">YouTube</a>
+    <a class="btn-link btn-download" href="#downloads">Map Combo Downloads</a>
+  </div>
+
+  <div class="notice-box">
+    ⚠️ All official ETS2 Map DLCs required. Check Discord for official load order.
+  </div>
+</header>
+
+<div class="search-container">
+  <input type="text" id="searchInput" class="search-input" placeholder="Search map files or connectors..." onkeyup="filterMods()">
+</div>
+
+<main class="container" id="downloads">
+  <h2 class="section-title">ETS2 Map Combo Downloads</h2>
+  <div class="mods-grid" id="ets2-list">
+    <div class="state-message">Loading map combo updates...</div>
+  </div>
+</main>
+
+<main class="container">
+  <h2 class="section-title">ATS Map Combo Downloads</h2>
+  <div class="mods-grid" id="ats-list">
+    <div class="state-message">Loading map combo updates...</div>
+  </div>
+</main>
+
+<footer>
+  🌍 RS Horizons V1 • Created by Rays Sim & Mr.Swede • One World. Endless Roads.
+</footer>
+
 <script>
 const PUB_ID = "2PACX-1vQUVe19uFKWsubVgwU1-U-_OnzR2dSo7zaPz5911uKaCg-b62wX8p-s3CY4sVFUdv4xDd1YqNDKAFFF";
 const ETS2_GID = "1587396084";
-const ATS_GID = "0";
+const ATS_GID = "0"; // Replace with your ATS tab GID from Google Sheets if you have a separate ATS tab
 
 const ETS2_CSV = `https://docs.google.com/spreadsheets/d/e/${PUB_ID}/pub?gid=${ETS2_GID}&single=true&output=csv`;
 const ATS_CSV  = `https://docs.google.com/spreadsheets/d/e/${PUB_ID}/pub?gid=${ATS_GID}&single=true&output=csv`;
 
+// Strips stray markdown symbols and backslashes
 function sanitizeText(str) {
   if (!str) return '';
   return str
@@ -16,14 +374,19 @@ function sanitizeText(str) {
     .trim();
 }
 
-// Cleans URLs and automatically turns Google Drive share links into direct downloads
+// Cleans up URLs and handles direct download conversions
 function cleanUrl(url) {
   if (!url) return '#';
   
-  // Clean raw formatting
+  // Extract link if enclosed in markdown like [Download](https://...)
+  const mdMatch = url.match(/\((https?:\/\/[^\s)]+)\)/);
+  if (mdMatch && mdMatch[1]) {
+    url = mdMatch[1];
+  }
+
   let clean = url.replace(/[<>"\\]/g, '').trim();
 
-  // If link is a Google Drive share link, force direct download format
+  // Convert Google Drive view/share links to direct downloads
   if (clean.includes("drive.google.com/file/d/")) {
     const fileIdMatch = clean.match(/\/d\/([^\/]+)/);
     if (fileIdMatch && fileIdMatch[1]) {
@@ -31,7 +394,7 @@ function cleanUrl(url) {
     }
   }
 
-  // If link is a Dropbox share link, force direct download format
+  // Convert Dropbox view links to direct downloads
   if (clean.includes("dropbox.com") && clean.includes("dl=0")) {
     return clean.replace("dl=0", "dl=1");
   }
@@ -86,6 +449,7 @@ async function loadList(csvUrl, elementId) {
         const rawMeta = sanitizeText(cols[2]) || 'Latest';
         const rawLink = cleanUrl(cols[3]);
 
+        // Skip divider lines
         if (rawName === '---' || rawName.length === 0) return;
 
         const card = document.createElement('div');
@@ -121,3 +485,6 @@ function filterMods() {
 loadList(ETS2_CSV, 'ets2-list');
 loadList(ATS_CSV, 'ats-list');
 </script>
+
+</body>
+</html>
