@@ -36,7 +36,7 @@ body {
     radial-gradient(circle at 50% -10%, rgba(56, 189, 248, 0.15), transparent 50%),
     radial-gradient(circle at 80% 100%, rgba(139, 92, 246, 0.1), transparent 50%);
   color: var(--text-main);
-  line-height: 1.5;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
   display: flex;
@@ -45,21 +45,24 @@ body {
 
 /* Header & Hero Section */
 .hero {
-  padding: 48px 20px 32px;
+  padding: 56px 24px 36px;
   text-align: center;
-  max-width: 920px;
+  max-width: 1000px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .logo-container {
   position: relative;
   display: inline-block;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .logo {
-  max-width: 290px;
-  width: 85%;
+  max-width: 310px;
+  width: 90%;
   height: auto;
   display: block;
   filter: drop-shadow(0 0 25px rgba(56, 189, 248, 0.25));
@@ -68,55 +71,58 @@ body {
 .version-tag {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   background: rgba(56, 189, 248, 0.1);
   border: 1px solid rgba(56, 189, 248, 0.3);
   color: var(--accent-cyan);
-  padding: 4px 12px;
+  padding: 6px 16px;
   border-radius: 20px;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
 }
 
-.version-tag i { font-size: 0.65rem; }
+.version-tag i { font-size: 0.7rem; }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 2.75rem;
   font-weight: 800;
   letter-spacing: -0.03em;
   background: linear-gradient(135deg, #ffffff 30%, var(--accent-cyan) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
+  line-height: 1.2;
 }
 
 .intro {
-  font-size: 0.98rem;
+  font-size: 1.05rem;
   color: var(--text-sub);
-  line-height: 1.6;
-  max-width: 680px;
-  margin: 0 auto 28px;
+  line-height: 1.7;
+  max-width: 760px;
+  margin: 0 auto 32px;
+  padding: 0 12px;
 }
 
 /* Community Buttons */
 .button-group {
   display: flex;
   justify-content: center;
-  gap: 12px;
+  gap: 16px;
   flex-wrap: wrap;
-  margin-bottom: 28px;
+  margin-bottom: 32px;
+  width: 100%;
 }
 
 .btn-community {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
-  border-radius: 10px;
-  font-size: 0.88rem;
+  gap: 10px;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 0.9rem;
   font-weight: 700;
   text-decoration: none;
   color: white;
@@ -138,24 +144,25 @@ h1 {
   background: rgba(245, 158, 11, 0.08);
   border: 1px solid rgba(245, 158, 11, 0.25);
   color: #fcd34d;
-  padding: 12px 20px;
+  padding: 14px 24px;
   border-radius: 12px;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  max-width: 720px;
-  margin: 0 auto 36px;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
 }
 
-/* Main Hub Container */
+/* Main Hub Container — Widened for cleaner spacing */
 .main-wrapper {
-  max-width: 960px;
+  max-width: 1080px;
   width: 100%;
   margin: 0 auto 60px;
-  padding: 0 20px;
+  padding: 0 24px;
   flex: 1;
 }
 
@@ -163,7 +170,7 @@ h1 {
 .search-bar-wrapper {
   display: flex;
   gap: 12px;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 
 .search-field-container {
@@ -173,21 +180,21 @@ h1 {
 
 .search-field-container i {
   position: absolute;
-  left: 16px;
+  left: 18px;
   top: 50%;
   transform: translateY(-50%);
   color: var(--text-muted);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
 .search-input {
   width: 100%;
-  padding: 14px 16px 14px 44px;
-  border-radius: 12px;
+  padding: 16px 20px 16px 48px;
+  border-radius: 14px;
   border: 1px solid var(--panel-border);
   background: var(--bg-surface);
   color: var(--text-main);
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   font-family: inherit;
   outline: none;
   transition: all 0.2s ease;
@@ -204,9 +211,9 @@ h1 {
   background: var(--bg-surface);
   border: 1px solid var(--panel-border);
   padding: 6px;
-  border-radius: 14px;
-  gap: 6px;
-  margin-bottom: 24px;
+  border-radius: 16px;
+  gap: 8px;
+  margin-bottom: 28px;
 }
 
 .tab-btn {
@@ -214,15 +221,15 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 12px 18px;
+  gap: 10px;
+  padding: 14px 20px;
   border: none;
   background: transparent;
   color: var(--text-sub);
   font-family: inherit;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 700;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -240,9 +247,9 @@ h1 {
 
 .tab-badge {
   background: rgba(0, 0, 0, 0.2);
-  padding: 2px 8px;
+  padding: 3px 10px;
   border-radius: 12px;
-  font-size: 0.75rem;
+  font-size: 0.78rem;
 }
 
 /* Download Cards List */
@@ -253,18 +260,18 @@ h1 {
 .tab-pane.active {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .mod-card {
   display: grid;
-  grid-template-columns: 48px 1fr 120px;
+  grid-template-columns: 52px 1fr 130px;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
   background: var(--panel-bg);
   border: 1px solid var(--panel-border);
-  border-radius: 12px;
-  padding: 14px 18px;
+  border-radius: 14px;
+  padding: 16px 22px;
   backdrop-filter: blur(12px);
   transition: all 0.2s ease;
 }
@@ -278,13 +285,13 @@ h1 {
 /* Order Badge */
 .mod-order {
   font-weight: 800;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--accent-cyan);
   background: rgba(56, 189, 248, 0.1);
   border: 1px solid rgba(56, 189, 248, 0.2);
-  width: 38px;
-  height: 38px;
-  border-radius: 8px;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -292,10 +299,10 @@ h1 {
 
 /* Primary File Name Styling */
 .mod-title {
-  font-size: 0.95rem;
+  font-size: 0.98rem;
   font-weight: 600;
   color: var(--accent-cyan);
-  line-height: 1.4;
+  line-height: 1.5;
   word-break: break-word;
 }
 
@@ -304,14 +311,14 @@ h1 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
   background: var(--accent-purple);
   color: #ffffff !important;
   text-decoration: none !important;
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 700;
-  padding: 10px 14px;
-  border-radius: 8px;
+  padding: 11px 16px;
+  border-radius: 10px;
   transition: all 0.2s ease;
   box-shadow: 0 2px 10px rgba(139, 92, 246, 0.25);
 }
@@ -332,45 +339,53 @@ h1 {
 
 .state-message {
   text-align: center;
-  padding: 40px 20px;
+  padding: 48px 24px;
   color: var(--text-sub);
   background: var(--bg-surface);
   border: 1px dashed var(--panel-border);
-  border-radius: 12px;
-  font-size: 0.9rem;
+  border-radius: 14px;
+  font-size: 0.95rem;
 }
 
 footer {
   text-align: center;
-  padding: 32px 20px;
+  padding: 36px 24px;
   border-top: 1px solid var(--panel-border);
   background: rgba(7, 9, 14, 0.8);
   color: var(--text-muted);
-  font-size: 0.82rem;
+  font-size: 0.85rem;
 }
 
 /* Mobile Alignment */
 @media (max-width: 640px) {
+  .hero {
+    padding: 36px 16px 24px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
   .mod-card {
-    grid-template-columns: 36px 1fr;
-    gap: 12px;
-    padding: 12px 14px;
+    grid-template-columns: 40px 1fr;
+    gap: 14px;
+    padding: 14px 16px;
   }
   
   .mod-order {
-    width: 32px;
-    height: 32px;
-    font-size: 0.78rem;
+    width: 36px;
+    height: 36px;
+    font-size: 0.8rem;
   }
 
   .mod-title {
-    font-size: 0.88rem;
+    font-size: 0.9rem;
   }
 
   .btn-download-mod {
     grid-column: 1 / -1;
     width: 100%;
-    margin-top: 4px;
+    margin-top: 6px;
   }
 }
 </style>
