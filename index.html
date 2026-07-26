@@ -266,6 +266,13 @@ h1 {
   background: var(--accent-purple-hover);
 }
 
+.btn-download-mod.disabled {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .state-message {
   text-align: center;
   padding: 24px;
@@ -358,12 +365,11 @@ footer {
 <script>
 const PUB_ID = "2PACX-1vQUVe19uFKWsubVgwU1-U-_OnzR2dSo7zaPz5911uKaCg-b62wX8p-s3CY4sVFUdv4xDd1YqNDKAFFF";
 const ETS2_GID = "1587396084";
-const ATS_GID = "0"; // Replace with your ATS tab GID from Google Sheets if you have a separate ATS tab
+const ATS_GID = "0";
 
 const ETS2_CSV = `https://docs.google.com/spreadsheets/d/e/${PUB_ID}/pub?gid=${ETS2_GID}&single=true&output=csv`;
 const ATS_CSV  = `https://docs.google.com/spreadsheets/d/e/${PUB_ID}/pub?gid=${ATS_GID}&single=true&output=csv`;
 
-// Strips stray markdown symbols and backslashes
 function sanitizeText(str) {
   if (!str) return '';
   return str
@@ -374,32 +380,35 @@ function sanitizeText(str) {
     .trim();
 }
 
-// Cleans up URLs and handles direct download conversions
-function cleanUrl(url) {
-  if (!url) return '#';
-  
-  // Extract link if enclosed in markdown like [Download](https://...)
-  const mdMatch = url.match(/\((https?:\/\/[^\s)]+)\)/);
-  if (mdMatch && mdMatch[1]) {
-    url = mdMatch[1];
-  }
+// Rigorous URL Extractor to prevent '#' fallback issues
+function extractValidUrl(rowCols) {
+  // Check columns 3, 4, and 5 (0-indexed 3, 4, 5) for any http link
+  for (let i = 3; i < Math.min(rowCols.length, 7); i++) {
+    let val = rowCols[i];
+    if (!val) continue;
 
-  let clean = url.replace(/[<>"\\]/g, '').trim();
+    // Direct match for http or https
+    let httpMatch = val.match(/https?:\/\/[^\s"'>)]+/i);
+    if (httpMatch) {
+      let cleanUrl = httpMatch[0].replace(/[\\"]/g, '').trim();
 
-  // Convert Google Drive view/share links to direct downloads
-  if (clean.includes("drive.google.com/file/d/")) {
-    const fileIdMatch = clean.match(/\/d\/([^\/]+)/);
-    if (fileIdMatch && fileIdMatch[1]) {
-      return `https://drive.google.com/uc?export=download&id=${fileIdMatch[1]}`;
+      // Convert Google Drive view links to direct downloads
+      if (cleanUrl.includes("drive.google.com/file/d/")) {
+        const fileId = cleanUrl.match(/\/d\/([^\/]+)/);
+        if (fileId && fileId[1]) {
+          return `https://drive.google.com/uc?export=download&id=${fileId[1]}`;
+        }
+      }
+
+      // Convert Dropbox links
+      if (cleanUrl.includes("dropbox.com") && cleanUrl.includes("dl=0")) {
+        return cleanUrl.replace("dl=0", "dl=1");
+      }
+
+      return cleanUrl;
     }
   }
-
-  // Convert Dropbox view links to direct downloads
-  if (clean.includes("dropbox.com") && clean.includes("dl=0")) {
-    return clean.replace("dl=0", "dl=1");
-  }
-
-  return clean;
+  return null; // Return null if no link exists
 }
 
 function parseCSVLine(line) {
@@ -447,18 +456,22 @@ async function loadList(csvUrl, elementId) {
         const rawNum = sanitizeText(cols[0]) || '-';
         const rawName = sanitizeText(cols[1]) || 'Unknown File';
         const rawMeta = sanitizeText(cols[2]) || 'Latest';
-        const rawLink = cleanUrl(cols[3]);
+        const validUrl = extractValidUrl(cols);
 
-        // Skip divider lines
         if (rawName === '---' || rawName.length === 0) return;
 
         const card = document.createElement('div');
         card.className = 'mod-card';
+        
+        let buttonHtml = validUrl 
+          ? `<a class="btn-download-mod" href="${validUrl}" target="_blank" rel="noopener noreferrer">Download</a>`
+          : `<span class="btn-download-mod disabled">No Link</span>`;
+
         card.innerHTML = `
           <div class="mod-order">${rawNum}</div>
           <div class="mod-title">${rawName}</div>
           <div class="mod-meta">${rawMeta}</div>
-          <a class="btn-download-mod" href="${rawLink}" target="_blank" rel="noopener noreferrer">Download</a>
+          ${buttonHtml}
         `;
         container.appendChild(card);
       }
