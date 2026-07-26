@@ -202,15 +202,14 @@ RS Horizons is a massive connected ETS2 world expansion project created by Rays 
 </footer>
 
 <script>
-// Published Google Sheet URL Endpoint (pub?output=csv)
-const PUBLISHED_KEY = "2PACX-1vQUVe19uFKWsubVgwU1-U-_OnzR2dSo7zaPz5911uKaCg-b62wX8p-s3CY4sVFUdv4xDd1YqNDKAFFF";
+// Key from published link:
+const PUB_ID = "2PACX-1vQUVe19uFKWsubVgwU1-U-_OnzR2dSo7zaPz5911uKaCg-b62wX8p-s3CY4sVFUdv4xDd1YqNDKAFFF";
+// Tab GIDs:
+const ETS2_GID = "1587396084";
+const ATS_GID = "0"; // Replace with your ATS tab GID if on another tab
 
-// ETS2 Tab GID & ATS Tab GID
-const ETS2_GID = "1587396084"; 
-const ATS_GID  = "0"; // Replace with ATS sheet tab GID if applicable
-
-const ETS2_CSV_URL = `https://docs.google.com/spreadsheets/d/e/${PUBLISHED_KEY}/pub?gid=${ETS2_GID}&single=true&output=csv`;
-const ATS_CSV_URL  = `https://docs.google.com/spreadsheets/d/e/${PUBLISHED_KEY}/pub?gid=${ATS_GID}&single=true&output=csv`;
+const ETS2_CSV = `https://docs.google.com/spreadsheets/d/e/${PUB_ID}/pub?gid=${ETS2_GID}&single=true&output=csv`;
+const ATS_CSV  = `https://docs.google.com/spreadsheets/d/e/${PUB_ID}/pub?gid=${ATS_GID}&single=true&output=csv`;
 
 function parseCSVLine(line) {
   const result = [];
@@ -235,48 +234,57 @@ function parseCSVLine(line) {
 }
 
 async function loadList(csvUrl, elementId) {
+  const container = document.getElementById(elementId);
   try {
     const response = await fetch(csvUrl);
-    if (!response.ok) throw new Error("Network response was not ok");
+    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+    
     const text = await response.text();
     const lines = text.split(/\r?\n/).filter(line => line.trim().length > 0);
     
-    // Skip header row
-    const dataLines = lines.slice(1); 
-    const container = document.getElementById(elementId);
+    if (lines.length <= 1) {
+      container.innerHTML = '<div style="text-align:center; padding:20px; color:#999;">No entries found in sheet tab.</div>';
+      return;
+    }
+
     container.innerHTML = '';
+
+    // Skip column headers (Row 1)
+    const dataLines = lines.slice(1);
 
     dataLines.forEach(line => {
       const cols = parseCSVLine(line);
-      if (cols.length >= 4) {
-        const num = cols[0];
-        const name = cols[1];
-        const updated = cols[2];
-        const link = cols[3];
+      // Ensure row has data (expecting #, Name, Updated, Link)
+      if (cols.length >= 3 && cols[1]) {
+        const num = cols[0] || '';
+        const name = cols[1] || '';
+        const updated = cols[2] || '';
+        const link = cols[3] || '#';
 
-        if (num && name) {
-          const rowHTML = `
-            <div class="row">
-              <div class="num">${num}</div>
-              <div class="name">${name}</div>
-              <div class="updated">${updated}</div>
-              <a class="btn" href="${link}" target="_blank">Download</a>
-            </div>
-          `;
-          container.innerHTML += rowHTML;
-        }
+        const rowHTML = `
+          <div class="row">
+            <div class="num">${num}</div>
+            <div class="name">${name}</div>
+            <div class="updated">${updated}</div>
+            <a class="btn" href="${link}" target="_blank">Download</a>
+          </div>
+        `;
+        container.innerHTML += rowHTML;
       }
     });
   } catch (err) {
-    console.error("Failed to load spreadsheet data:", err);
-    document.getElementById(elementId).innerHTML = 
-      '<div style="text-align:center; padding:20px; color:#ff6666;">Unable to load download list.</div>';
+    console.error(`Error loading ${elementId}:`, err);
+    container.innerHTML = `
+      <div style="text-align:center; padding:20px; color:#ff6666;">
+        Unable to load download list.<br>
+        <small style="color:#aaa;">If publishing for the first time, allow 1–2 minutes for Google's published CSV stream to sync.</small>
+      </div>`;
   }
 }
 
-// Fetch lists on page load
-loadList(ETS2_CSV_URL, 'ets2-list');
-loadList(ATS_CSV_URL, 'ats-list');
+// Fetch lists
+loadList(ETS2_CSV, 'ets2-list');
+loadList(ATS_CSV, 'ats-list');
 </script>
 
 </body>
