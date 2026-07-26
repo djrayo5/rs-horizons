@@ -246,7 +246,7 @@ h1 {
   text-overflow: ellipsis;
 }
 
-/* Button */
+/* Download Button */
 .btn-download-mod {
   display: inline-flex;
   align-items: center;
@@ -370,45 +370,44 @@ const ATS_GID = "0";
 const ETS2_CSV = `https://docs.google.com/spreadsheets/d/e/${PUB_ID}/pub?gid=${ETS2_GID}&single=true&output=csv`;
 const ATS_CSV  = `https://docs.google.com/spreadsheets/d/e/${PUB_ID}/pub?gid=${ATS_GID}&single=true&output=csv`;
 
-function sanitizeText(str) {
+// Cleans up raw text and prevents text formatting glitches
+function cleanTitle(str) {
   if (!str) return '';
   return str
     .replace(/\\/g, '')
     .replace(/^#+\s*/, '')
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // Removes markdown links, leaving plain mod name
     .replace(/[<>]/g, '')
     .trim();
 }
 
-// Rigorous URL Extractor to prevent '#' fallback issues
-function extractValidUrl(rowCols) {
-  // Check columns 3, 4, and 5 (0-indexed 3, 4, 5) for any http link
-  for (let i = 3; i < Math.min(rowCols.length, 7); i++) {
-    let val = rowCols[i];
+// Scans columns for valid URL link
+function extractUrl(cols) {
+  for (let i = 0; i < cols.length; i++) {
+    let val = cols[i];
     if (!val) continue;
 
-    // Direct match for http or https
-    let httpMatch = val.match(/https?:\/\/[^\s"'>)]+/i);
-    if (httpMatch) {
-      let cleanUrl = httpMatch[0].replace(/[\\"]/g, '').trim();
+    let match = val.match(/https?:\/\/[^\s"'>)]+/i);
+    if (match) {
+      let clean = match[0].replace(/[\\"]/g, '').trim();
 
       // Convert Google Drive view links to direct downloads
-      if (cleanUrl.includes("drive.google.com/file/d/")) {
-        const fileId = cleanUrl.match(/\/d\/([^\/]+)/);
+      if (clean.includes("drive.google.com/file/d/")) {
+        const fileId = clean.match(/\/d\/([^\/]+)/);
         if (fileId && fileId[1]) {
           return `https://drive.google.com/uc?export=download&id=${fileId[1]}`;
         }
       }
 
       // Convert Dropbox links
-      if (cleanUrl.includes("dropbox.com") && cleanUrl.includes("dl=0")) {
-        return cleanUrl.replace("dl=0", "dl=1");
+      if (clean.includes("dropbox.com") && clean.includes("dl=0")) {
+        return clean.replace("dl=0", "dl=1");
       }
 
-      return cleanUrl;
+      return clean;
     }
   }
-  return null; // Return null if no link exists
+  return null;
 }
 
 function parseCSVLine(line) {
@@ -453,18 +452,18 @@ async function loadList(csvUrl, elementId) {
     dataLines.forEach(line => {
       const cols = parseCSVLine(line);
       if (cols.length >= 2 && cols[1]) {
-        const rawNum = sanitizeText(cols[0]) || '-';
-        const rawName = sanitizeText(cols[1]) || 'Unknown File';
-        const rawMeta = sanitizeText(cols[2]) || 'Latest';
-        const validUrl = extractValidUrl(cols);
+        const rawNum = cleanTitle(cols[0]) || '-';
+        const rawName = cleanTitle(cols[1]) || 'Unknown File';
+        const rawMeta = cleanTitle(cols[2]) || 'Latest';
+        const downloadUrl = extractUrl(cols);
 
         if (rawName === '---' || rawName.length === 0) return;
 
         const card = document.createElement('div');
         card.className = 'mod-card';
         
-        let buttonHtml = validUrl 
-          ? `<a class="btn-download-mod" href="${validUrl}" target="_blank" rel="noopener noreferrer">Download</a>`
+        let buttonHtml = downloadUrl 
+          ? `<a class="btn-download-mod" href="${downloadUrl}" target="_blank" rel="noopener noreferrer">Download</a>`
           : `<span class="btn-download-mod disabled">No Link</span>`;
 
         card.innerHTML = `
