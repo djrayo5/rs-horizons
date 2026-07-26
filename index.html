@@ -211,7 +211,7 @@ h1 {
 .portal-wrapper {
   max-width: 1100px;
   width: 100%;
-  margin: 0 auto 80px;
+  margin: 0 auto 40px;
   padding: 0 20px;
   flex: 1;
 }
@@ -372,7 +372,6 @@ h1 {
   justify-content: center;
 }
 
-/* Title Container with File Icon */
 .mod-title-container {
   display: flex;
   align-items: center;
@@ -386,7 +385,6 @@ h1 {
   opacity: 0.9;
 }
 
-/* Clean White Title Text */
 .mod-title {
   font-size: 1.02rem;
   font-weight: 700;
@@ -441,6 +439,87 @@ h1 {
   margin-bottom: 12px;
 }
 
+/* Disclaimer Section Styling */
+.disclaimer-card {
+  max-width: 1100px;
+  margin: 0 auto 60px;
+  padding: 0 20px;
+}
+
+.disclaimer-inner {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--amber);
+  border-radius: 16px;
+  padding: 30px;
+  backdrop-filter: blur(8px);
+}
+
+.disclaimer-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.disclaimer-header i {
+  font-size: 1.4rem;
+  color: var(--amber);
+}
+
+.disclaimer-header h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.4rem;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.disclaimer-body p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+}
+
+.disclaimer-subtitle {
+  font-weight: 700;
+  color: #ffffff;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 0.98rem;
+}
+
+.disclaimer-list {
+  list-style: none;
+  margin-bottom: 20px;
+  padding-left: 0;
+}
+
+.disclaimer-list li {
+  position: relative;
+  padding-left: 22px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.disclaimer-list li::before {
+  content: "•";
+  color: var(--amber);
+  font-weight: bold;
+  position: absolute;
+  left: 6px;
+  top: 0;
+}
+
+.disclaimer-footer {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  font-style: italic;
+}
+
 /* Footer */
 footer {
   margin-top: auto;
@@ -458,6 +537,7 @@ footer {
   .game-tabs { grid-template-columns: 1fr; }
   .mod-row-card { grid-template-columns: 44px 1fr; gap: 14px; }
   .btn-download { grid-column: 1 / -1; width: 100%; margin-top: 4px; }
+  .disclaimer-inner { padding: 20px; }
 }
 </style>
 </head>
@@ -571,6 +651,47 @@ footer {
   </div>
 
 </main>
+
+<!-- Disclaimer Section -->
+<section class="disclaimer-card">
+  <div class="disclaimer-inner">
+    <div class="disclaimer-header">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      <h2>RS Horizons Disclaimer</h2>
+    </div>
+    
+    <div class="disclaimer-body">
+      <p>RS Horizons is a massive community map combo that combines numerous third-party map modifications into a single experience.</p>
+
+      <p>While every effort is made to ensure stability and compatibility, it is impossible to test every road, city, company, job, and map connection across the entire project.</p>
+
+      <p class="disclaimer-subtitle">By installing and using RS Horizons, you acknowledge that:</p>
+      <ul class="disclaimer-list">
+        <li>Bugs, missing roads, invisible walls, map gaps, crashes, and other issues may occur.</li>
+        <li>Future ETS2 updates or map updates may temporarily break compatibility.</li>
+        <li>Mod conflicts can cause crashes, missing assets, or profile corruption.</li>
+        <li>No guarantee can be made that every route or area is fully tested.</li>
+      </ul>
+
+      <p class="disclaimer-subtitle">Recommended Installation Practices</p>
+      <ul class="disclaimer-list">
+        <li>Always create a NEW, dedicated profile for RS Horizons.</li>
+        <li>Do NOT use your main profile.</li>
+        <li>Do NOT use profiles containing unrelated mods.</li>
+        <li>Follow the official load order exactly.</li>
+        <li>Keep regular backups of your profile and save games.</li>
+        <li>Remove incompatible mods before reporting issues.</li>
+        <li>Join the Discord server for support before assuming an issue is caused by RS Horizons.</li>
+      </ul>
+
+      <p>The RS Horizons team and contributors cannot be held responsible for damaged saves, corrupted profiles, lost progress, crashes, or issues resulting from incorrect installation, conflicting modifications, or future game updates.</p>
+
+      <p>If you encounter a problem, please report it through the Discord server with as much information as possible, including ETS2 version, load order, location, screenshots, and game.log details.</p>
+
+      <p class="disclaimer-footer">Thank you for helping us improve RS Horizons and making the project better for everyone.</p>
+    </div>
+  </div>
+</section>
 
 <footer>
   <p>RS Horizons V1 Hub • Created with passion by <strong>Rays Sim</strong> & <strong>Mr.Swede</strong></p>
@@ -689,7 +810,6 @@ async function loadGameList(csvUrl, gameKey) {
       }
     });
 
-    // Update Counts
     const count = modDataStore[gameKey].length;
     document.getElementById(`count-badge-${gameKey}`).textContent = count;
     document.getElementById(`stat-${gameKey}-count`).textContent = count;
