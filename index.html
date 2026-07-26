@@ -461,10 +461,19 @@ const ATS_CSV  = `https://docs.google.com/spreadsheets/d/e/${PUB_ID}/pub?gid=${A
 
 function cleanTitleOnly(str) {
   if (!str) return '';
-  return str
+  
+  // Extract display text if it's formatted as Markdown or HTML links
+  let cleaned = str
     .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
-    .replace(/<a\b[^>]*>(.*?)<\/a>/gi, '$1')
-    .replace(/https?:\/\/[^\s"'>)]+/gi, '')
+    .replace(/<a\b[^>]*>(.*?)<\/a>/gi, '$1');
+
+  // If the cell was just a raw link, extract domain/filename hint or clean text
+  if (/^https?:\/\//i.test(cleaned.trim())) {
+    return cleaned.trim();
+  }
+
+  return cleaned
+    .replace(/https?:\/\/[^\s"'>)]+/gi, '') // Remove raw URLs
     .replace(/[<>]/g, '')
     .replace(/\\/g, '')
     .replace(/^#+\s*/, '')
@@ -542,12 +551,28 @@ async function loadList(csvUrl, elementId, badgeId) {
 
     dataLines.forEach(line => {
       const cols = parseCSVLine(line);
-      if (cols.length >= 2 && cols[1]) {
+      if (cols.length >= 1) {
         const rawNum = cleanTitleOnly(cols[0]) || '-';
-        const rawName = cleanTitleOnly(cols[1]);
+        let rawName = cols[1] ? cleanTitleOnly(cols[1]) : '';
         const downloadUrl = extractUrl(cols);
 
-        // Skip row completely if file name is empty or just dashes
+        // If cell 1 was blank but cell 0 contains text that isn't just a number, use cell 0 as title
+        if (!rawName && cols[0] && isNaN(cols[0])) {
+          rawName = cleanTitleOnly(cols[0]);
+        }
+
+        // If cell 1 was a raw URL, clean it to display nicely as a title
+        if (rawName.startsWith("http://") || rawName.startsWith("https://")) {
+          try {
+            const urlObj = new URL(rawName);
+            rawName = urlObj.pathname.split('/').pop() || urlObj.hostname;
+            rawName = decodeURIComponent(rawName).replace(/[-_]/g, ' ');
+          } catch(e) {
+            rawName = "Download File";
+          }
+        }
+
+        // Skip row only if completely empty or dashed separator
         if (!rawName || rawName === '---') {
           return;
         }
