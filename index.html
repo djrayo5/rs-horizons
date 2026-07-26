@@ -120,7 +120,7 @@ h1 {
   font-weight: 700;
   text-decoration: none;
   color: white;
-  transition: all 0.25 ease;
+  transition: all 0.25s ease;
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
@@ -544,15 +544,12 @@ async function loadList(csvUrl, elementId, badgeId) {
       const cols = parseCSVLine(line);
       if (cols.length >= 2 && cols[1]) {
         const rawNum = cleanTitleOnly(cols[0]) || '-';
-        let rawName = cleanTitleOnly(cols[1]);
+        const rawName = cleanTitleOnly(cols[1]);
         const downloadUrl = extractUrl(cols);
 
+        // Skip row completely if file name is empty or just dashes
         if (!rawName || rawName === '---') {
-          if (cols[1] && cols[1].length > 0 && cols[1] !== '---') {
-            rawName = "Map Combo File";
-          } else {
-            return;
-          }
+          return;
         }
 
         validCount++;
@@ -571,6 +568,10 @@ async function loadList(csvUrl, elementId, badgeId) {
         container.appendChild(card);
       }
     });
+
+    if (validCount === 0) {
+      container.innerHTML = '<div class="state-message">No map files currently listed in this category.</div>';
+    }
 
     badge.textContent = validCount;
 
