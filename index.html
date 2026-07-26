@@ -217,11 +217,11 @@ h1 {
   justify-content: center;
 }
 
-/* Clean Title Typography */
+/* Clean Title Typography - Prevents blue links or raw URL strings from rendering */
 .mod-title {
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--text-main);
+  color: var(--text-main) !important;
   line-height: 1.35;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -229,6 +229,12 @@ h1 {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   word-break: break-word;
+}
+
+.mod-title a {
+  color: var(--text-main) !important;
+  text-decoration: none !important;
+  pointer-events: none;
 }
 
 /* Metadata Badge */
@@ -252,8 +258,8 @@ h1 {
   align-items: center;
   justify-content: center;
   background: var(--accent-purple);
-  color: white;
-  text-decoration: none;
+  color: #ffffff !important;
+  text-decoration: none !important;
   font-size: 0.8rem;
   font-weight: 700;
   padding: 7px 12px;
@@ -268,7 +274,7 @@ h1 {
 
 .btn-download-mod.disabled {
   background: rgba(255, 255, 255, 0.1);
-  color: var(--text-muted);
+  color: var(--text-muted) !important;
   cursor: not-allowed;
   pointer-events: none;
 }
@@ -370,15 +376,23 @@ const ATS_GID = "0";
 const ETS2_CSV = `https://docs.google.com/spreadsheets/d/e/${PUB_ID}/pub?gid=${ETS2_GID}&single=true&output=csv`;
 const ATS_CSV  = `https://docs.google.com/spreadsheets/d/e/${PUB_ID}/pub?gid=${ATS_GID}&single=true&output=csv`;
 
-// Cleans up raw text and prevents text formatting glitches
-function cleanTitle(str) {
+// Aggressive title cleaner to filter out URLs, markdown, and html tags from column 2
+function cleanTitleOnly(str) {
   if (!str) return '';
   return str
-    .replace(/\\/g, '')
-    .replace(/^#+\s*/, '')
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // Removes markdown links, leaving plain mod name
-    .replace(/[<>]/g, '')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // Extract text out of markdown links [Text](url)
+    .replace(/<a\b[^>]*>(.*?)<\/a>/gi, '$1') // Extract inner text if sheet published HTML tags
+    .replace(/https?:\/\/[^\s"'>)]+/gi, '')  // Wipe out any raw http/https URLs completely
+    .replace(/[<>]/g, '')                     // Remove lingering angle brackets
+    .replace(/\\/g, '')                      // Remove backslashes
+    .replace(/^#+\s*/, '')                   // Remove header symbols
     .trim();
+}
+
+function cleanMeta(str) {
+  if (!str) return 'Latest';
+  const clean = cleanTitleOnly(str);
+  return clean.length > 0 ? clean : 'Latest';
 }
 
 // Scans columns for valid URL link
@@ -452,12 +466,19 @@ async function loadList(csvUrl, elementId) {
     dataLines.forEach(line => {
       const cols = parseCSVLine(line);
       if (cols.length >= 2 && cols[1]) {
-        const rawNum = cleanTitle(cols[0]) || '-';
-        const rawName = cleanTitle(cols[1]) || 'Unknown File';
-        const rawMeta = cleanTitle(cols[2]) || 'Latest';
+        const rawNum = cleanTitleOnly(cols[0]) || '-';
+        let rawName = cleanTitleOnly(cols[1]);
+        const rawMeta = cleanMeta(cols[2]);
         const downloadUrl = extractUrl(cols);
 
-        if (rawName === '---' || rawName.length === 0) return;
+        // Fallback title check if cleaning removed a raw URL title
+        if (!rawName || rawName === '---') {
+          if (cols[1] && cols[1].length > 0 && cols[1] !== '---') {
+            rawName = "Map Combo File";
+          } else {
+            return;
+          }
+        }
 
         const card = document.createElement('div');
         card.className = 'mod-card';
