@@ -3,27 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RS Horizons V1 — Official Map Combo Downloads</title>
+<title>RS Horizons V1 — Official Map Combo Hub</title>
 
-<!-- Modern Crisp Font -->
+<!-- Modern Fonts & Icons -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
 :root {
-  --bg-dark: #080b11;
-  --panel-bg: #101726;
-  --card-bg: rgba(18, 26, 43, 0.85);
-  --card-hover: rgba(26, 38, 64, 0.95);
-  --border-color: rgba(255, 255, 255, 0.08);
-  --border-highlight: rgba(56, 189, 248, 0.3);
+  --bg-dark: #07090e;
+  --bg-surface: #0f1523;
+  --panel-bg: rgba(18, 26, 43, 0.7);
+  --panel-border: rgba(255, 255, 255, 0.08);
   --accent-cyan: #38bdf8;
+  --accent-cyan-glow: rgba(56, 189, 248, 0.25);
   --accent-purple: #8b5cf6;
   --accent-purple-hover: #7c3aed;
   --text-main: #f8fafc;
-  --text-sub: #cbd5e1;
+  --text-sub: #94a3b8;
   --text-muted: #64748b;
+  --gold: #f59e0b;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -32,202 +33,269 @@ body {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   background-color: var(--bg-dark);
   background-image: 
-    radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.12), transparent 45%),
-    radial-gradient(circle at 50% 100%, rgba(139, 92, 246, 0.08), transparent 45%);
+    radial-gradient(circle at 50% -10%, rgba(56, 189, 248, 0.15), transparent 50%),
+    radial-gradient(circle at 80% 100%, rgba(139, 92, 246, 0.1), transparent 50%);
   color: var(--text-main);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Header & Hero */
+/* Header & Hero Section */
 .hero {
-  padding: 48px 20px 24px;
+  padding: 48px 20px 32px;
   text-align: center;
-  max-width: 800px;
+  max-width: 920px;
   margin: 0 auto;
 }
 
-.logo {
-  max-width: 280px;
-  width: 80%;
-  height: auto;
-  margin: 0 auto 20px;
-  display: block;
-  filter: drop-shadow(0 4px 20px rgba(56, 189, 248, 0.2));
+.logo-container {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
 }
+
+.logo {
+  max-width: 290px;
+  width: 85%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 0 25px rgba(56, 189, 248, 0.25));
+}
+
+.version-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: var(--accent-cyan);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.version-tag i { font-size: 0.65rem; }
 
 h1 {
-  font-size: 2.25rem;
+  font-size: 2.5rem;
   font-weight: 800;
   letter-spacing: -0.03em;
-  color: var(--text-main);
-  margin-bottom: 4px;
-}
-
-.tagline {
-  font-size: 0.95rem;
-  color: var(--accent-cyan);
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 16px;
+  background: linear-gradient(135deg, #ffffff 30%, var(--accent-cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
 }
 
 .intro {
-  font-size: 0.95rem;
+  font-size: 0.98rem;
   color: var(--text-sub);
   line-height: 1.6;
-  max-width: 640px;
-  margin: 0 auto 24px;
+  max-width: 680px;
+  margin: 0 auto 28px;
 }
 
-/* Header Buttons */
+/* Community Buttons */
 .button-group {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
   flex-wrap: wrap;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 
-.btn-link {
+.btn-community {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: 9px 18px;
-  border-radius: 8px;
-  font-size: 0.85rem;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 0.88rem;
   font-weight: 700;
   text-decoration: none;
   color: white;
-  transition: all 0.2s ease;
+  transition: all 0.25 ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
-.btn-link:hover {
-  transform: translateY(-1px);
-  filter: brightness(1.1);
+.btn-community:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
 }
 
 .btn-discord { background: #5865F2; }
 .btn-youtube { background: #FF0000; }
-.btn-download { background: var(--accent-purple); }
+.btn-shop { background: #059669; }
 
 /* Notice Banner */
-.notice-box {
+.notice-card {
   background: rgba(245, 158, 11, 0.08);
   border: 1px solid rgba(245, 158, 11, 0.25);
-  color: #fbbf24;
-  padding: 10px 18px;
-  border-radius: 8px;
+  color: #fcd34d;
+  padding: 12px 20px;
+  border-radius: 12px;
   font-size: 0.85rem;
   font-weight: 600;
-  display: inline-block;
-  margin-bottom: 10px;
+  max-width: 720px;
+  margin: 0 auto 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
-/* Search Bar */
-.search-container {
-  max-width: 900px;
-  margin: 20px auto;
+/* Main Hub Container */
+.main-wrapper {
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto 60px;
   padding: 0 20px;
+  flex: 1;
+}
+
+/* Search Bar & Stats Bar */
+.search-bar-wrapper {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.search-field-container {
+  position: relative;
+  flex: 1;
+}
+
+.search-field-container i {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 0.9rem;
 }
 
 .search-input {
   width: 100%;
-  padding: 12px 18px;
-  border-radius: 10px;
-  border: 1px solid var(--border-color);
-  background: var(--panel-bg);
+  padding: 14px 16px 14px 44px;
+  border-radius: 12px;
+  border: 1px solid var(--panel-border);
+  background: var(--bg-surface);
   color: var(--text-main);
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   font-family: inherit;
   outline: none;
-  transition: border-color 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .search-input:focus {
   border-color: var(--accent-cyan);
-  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+  box-shadow: 0 0 0 4px var(--accent-cyan-glow);
 }
 
-/* Containers */
-.container {
-  max-width: 900px;
-  margin: 0 auto 40px;
-  padding: 0 20px;
+/* Navigation Tabs */
+.tabs-navigation {
+  display: flex;
+  background: var(--bg-surface);
+  border: 1px solid var(--panel-border);
+  padding: 6px;
+  border-radius: 14px;
+  gap: 6px;
+  margin-bottom: 24px;
 }
 
-.section-title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--text-main);
-  margin-bottom: 14px;
+.tab-btn {
+  flex: 1;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  letter-spacing: -0.01em;
+  padding: 12px 18px;
+  border: none;
+  background: transparent;
+  color: var(--text-sub);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.section-title::before {
-  content: '';
-  display: inline-block;
-  width: 4px;
-  height: 16px;
+.tab-btn:hover {
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.tab-btn.active {
   background: var(--accent-cyan);
-  border-radius: 2px;
+  color: #07090e;
+  box-shadow: 0 4px 15px var(--accent-cyan-glow);
 }
 
-/* Mod Card Rows — Clean 3-Column Layout */
-.mods-grid {
+.tab-badge {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+}
+
+/* Download Cards List */
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.active {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .mod-card {
   display: grid;
-  grid-template-columns: 40px 1fr 110px;
+  grid-template-columns: 48px 1fr 120px;
   align-items: center;
-  gap: 14px;
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 10px;
-  padding: 12px 16px;
-  transition: all 0.15s ease;
+  gap: 16px;
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 14px 18px;
+  backdrop-filter: blur(12px);
+  transition: all 0.2s ease;
 }
 
 .mod-card:hover {
-  background: var(--card-hover);
-  border-color: var(--border-highlight);
+  background: rgba(24, 34, 56, 0.9);
+  border-color: rgba(56, 189, 248, 0.4);
+  transform: translateX(4px);
 }
 
-/* Number Badge */
+/* Order Badge */
 .mod-order {
-  font-weight: 700;
-  font-size: 0.8rem;
+  font-weight: 800;
+  font-size: 0.85rem;
   color: var(--accent-cyan);
-  background: rgba(56, 189, 248, 0.08);
-  border: 1px solid rgba(56, 189, 248, 0.15);
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* File/Mod Name — Styled in Cyan Blue where white text used to be */
+/* Primary File Name Styling */
 .mod-title {
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  color: var(--accent-cyan) !important;
-  line-height: 1.35;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  color: var(--accent-cyan);
+  line-height: 1.4;
   word-break: break-word;
 }
 
@@ -236,56 +304,67 @@ h1 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 6px;
   background: var(--accent-purple);
   color: #ffffff !important;
   text-decoration: none !important;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 700;
-  padding: 8px 12px;
-  border-radius: 6px;
-  transition: background 0.2s ease;
-  text-align: center;
+  padding: 10px 14px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 10px rgba(139, 92, 246, 0.25);
 }
 
 .btn-download-mod:hover {
   background: var(--accent-purple-hover);
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
 }
 
 .btn-download-mod.disabled {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   color: var(--text-muted) !important;
+  box-shadow: none;
   cursor: not-allowed;
   pointer-events: none;
 }
 
 .state-message {
   text-align: center;
-  padding: 24px;
-  color: var(--text-muted);
-  background: var(--panel-bg);
-  border: 1px dashed var(--border-color);
-  border-radius: 10px;
-  font-size: 0.85rem;
+  padding: 40px 20px;
+  color: var(--text-sub);
+  background: var(--bg-surface);
+  border: 1px dashed var(--panel-border);
+  border-radius: 12px;
+  font-size: 0.9rem;
 }
 
 footer {
   text-align: center;
-  padding: 28px 20px;
-  border-top: 1px solid var(--border-color);
+  padding: 32px 20px;
+  border-top: 1px solid var(--panel-border);
+  background: rgba(7, 9, 14, 0.8);
   color: var(--text-muted);
-  font-size: 0.8rem;
+  font-size: 0.82rem;
 }
 
 /* Mobile Alignment */
-@media (max-width: 680px) {
+@media (max-width: 640px) {
   .mod-card {
-    grid-template-columns: 32px 1fr;
-    gap: 10px;
-    padding: 12px;
+    grid-template-columns: 36px 1fr;
+    gap: 12px;
+    padding: 12px 14px;
   }
   
+  .mod-order {
+    width: 32px;
+    height: 32px;
+    font-size: 0.78rem;
+  }
+
   .mod-title {
-    font-size: 0.875rem;
+    font-size: 0.88rem;
   }
 
   .btn-download-mod {
@@ -300,45 +379,76 @@ footer {
 <body>
 
 <header class="hero">
-  <img src="RSHLogo.png" class="logo" alt="RS Horizons Logo">
-  <h1>RS Horizons V1</h1>
-  <div class="tagline">One World. Endless Roads.</div>
+  <div class="logo-container">
+    <img src="RSHLogo.png" class="logo" alt="RS Horizons Logo">
+  </div>
   
+  <div class="version-tag">
+    <i class="fa-solid fa-circle-dot"></i> Official Load Orders & Downloads
+  </div>
+  
+  <h1>RS Horizons V1</h1>
+
   <p class="intro">
-    A connected ETS2 world expansion combining premier map projects into one seamless driving experience. Created by Rays Sim & Mr.Swede.
+    One World. Endless Roads. Experience a massive connected ETS2 & ATS expansion combining premier map mods into one ultimate long-haul universe. Created by <strong>Rays Sim</strong> & <strong>Mr.Swede</strong>.
   </p>
 
   <div class="button-group">
-    <a class="btn-link btn-discord" href="https://discord.com/invite/nmPuEYtmhZ" target="_blank">Discord Community</a>
-    <a class="btn-link btn-youtube" href="https://www.youtube.com/@RaysSim" target="_blank">YouTube</a>
-    <a class="btn-link btn-download" href="#downloads">Map Combo Downloads</a>
+    <a class="btn-community btn-discord" href="https://discord.com/invite/nmPuEYtmhZ" target="_blank">
+      <i class="fa-brands fa-discord"></i> Discord Community
+    </a>
+    <a class="btn-community btn-youtube" href="https://www.youtube.com/@RaysSim" target="_blank">
+      <i class="fa-brands fa-youtube"></i> YouTube Channel
+    </a>
+    <a class="btn-community btn-shop" href="https://rays-sim-shop.fourthwall.com/" target="_blank">
+      <i class="fa-solid fa-bag-shopping"></i> Merch Shop
+    </a>
   </div>
 
-  <div class="notice-box">
-    ⚠️ All official ETS2 Map DLCs required. Check Discord for official load order.
+  <div class="notice-card">
+    <i class="fa-solid fa-triangle-exclamation"></i>
+    <span>Requires all official Map DLCs. Follow the load order numbers exactly to prevent game crashes.</span>
   </div>
 </header>
 
-<div class="search-container">
-  <input type="text" id="searchInput" class="search-input" placeholder="Search map files or connectors..." onkeyup="filterMods()">
-</div>
-
-<main class="container" id="downloads">
-  <h2 class="section-title">ETS2 Map Combo Downloads</h2>
-  <div class="mods-grid" id="ets2-list">
-    <div class="state-message">Loading map combo updates...</div>
+<main class="main-wrapper">
+  <!-- Search Field -->
+  <div class="search-bar-wrapper">
+    <div class="search-field-container">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="searchInput" class="search-input" placeholder="Search map files, connectors, or fix packages..." onkeyup="filterMods()">
+    </div>
   </div>
-</main>
 
-<main class="container">
-  <h2 class="section-title">ATS Map Combo Downloads</h2>
-  <div class="mods-grid" id="ats-list">
-    <div class="state-message">Loading map combo updates...</div>
+  <!-- Navigation Tabs -->
+  <div class="tabs-navigation">
+    <button class="tab-btn active" onclick="switchTab('ets2')" id="tab-ets2">
+      <i class="fa-solid fa-truck-front"></i> Euro Truck Simulator 2
+      <span class="tab-badge" id="count-ets2">0</span>
+    </button>
+    <button class="tab-btn" onclick="switchTab('ats')" id="tab-ats">
+      <i class="fa-solid fa-truck"></i> American Truck Simulator
+      <span class="tab-badge" id="count-ats">0</span>
+    </button>
+  </div>
+
+  <!-- ETS2 Content Tab -->
+  <div class="tab-pane active" id="pane-ets2">
+    <div class="state-message">
+      <i class="fa-solid fa-circle-notch fa-spin"></i> Fetching ETS2 map combo list...
+    </div>
+  </div>
+
+  <!-- ATS Content Tab -->
+  <div class="tab-pane" id="pane-ats">
+    <div class="state-message">
+      <i class="fa-solid fa-circle-notch fa-spin"></i> Fetching ATS map combo list...
+    </div>
   </div>
 </main>
 
 <footer>
-  🌍 RS Horizons V1 • Created by Rays Sim & Mr.Swede • One World. Endless Roads.
+  🌍 RS Horizons V1 • Built with passion for the Truck Sim Community by Rays Sim & Mr.Swede
 </footer>
 
 <script>
@@ -349,20 +459,18 @@ const ATS_GID = "0";
 const ETS2_CSV = `https://docs.google.com/spreadsheets/d/e/${PUB_ID}/pub?gid=${ETS2_GID}&single=true&output=csv`;
 const ATS_CSV  = `https://docs.google.com/spreadsheets/d/e/${PUB_ID}/pub?gid=${ATS_GID}&single=true&output=csv`;
 
-// Aggressively strips out raw URLs, markdown, and html tags to leave clean text
 function cleanTitleOnly(str) {
   if (!str) return '';
   return str
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // Extract text out of markdown links
-    .replace(/<a\b[^>]*>(.*?)<\/a>/gi, '$1') // Extract text out of HTML links
-    .replace(/https?:\/\/[^\s"'>)]+/gi, '')  // Remove raw URLs completely
-    .replace(/[<>]/g, '')                     // Remove lingering tags
-    .replace(/\\/g, '')                      // Remove backslashes
-    .replace(/^#+\s*/, '')                   // Remove header symbols
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/<a\b[^>]*>(.*?)<\/a>/gi, '$1')
+    .replace(/https?:\/\/[^\s"'>)]+/gi, '')
+    .replace(/[<>]/g, '')
+    .replace(/\\/g, '')
+    .replace(/^#+\s*/, '')
     .trim();
 }
 
-// Scans all columns in a row to find the download URL
 function extractUrl(cols) {
   for (let i = 0; i < cols.length; i++) {
     let val = cols[i];
@@ -372,7 +480,6 @@ function extractUrl(cols) {
     if (match) {
       let clean = match[0].replace(/[\\"]/g, '').trim();
 
-      // Convert Google Drive view links to direct downloads
       if (clean.includes("drive.google.com/file/d/")) {
         const fileId = clean.match(/\/d\/([^\/]+)/);
         if (fileId && fileId[1]) {
@@ -380,7 +487,6 @@ function extractUrl(cols) {
         }
       }
 
-      // Convert Dropbox links
       if (clean.includes("dropbox.com") && clean.includes("dl=0")) {
         return clean.replace("dl=0", "dl=1");
       }
@@ -413,8 +519,10 @@ function parseCSVLine(line) {
   return result;
 }
 
-async function loadList(csvUrl, elementId) {
+async function loadList(csvUrl, elementId, badgeId) {
   const container = document.getElementById(elementId);
+  const badge = document.getElementById(badgeId);
+
   try {
     const response = await fetch(csvUrl);
     if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
@@ -423,12 +531,14 @@ async function loadList(csvUrl, elementId) {
     const lines = text.split(/\r?\n/).filter(line => line.trim().length > 0);
     
     if (lines.length <= 1) {
-      container.innerHTML = '<div class="state-message">No files available in this section.</div>';
+      container.innerHTML = '<div class="state-message">No map files currently listed in this category.</div>';
+      badge.textContent = '0';
       return;
     }
 
     container.innerHTML = '';
     const dataLines = lines.slice(1);
+    let validCount = 0;
 
     dataLines.forEach(line => {
       const cols = parseCSVLine(line);
@@ -437,7 +547,6 @@ async function loadList(csvUrl, elementId) {
         let rawName = cleanTitleOnly(cols[1]);
         const downloadUrl = extractUrl(cols);
 
-        // Fallback check
         if (!rawName || rawName === '---') {
           if (cols[1] && cols[1].length > 0 && cols[1] !== '---') {
             rawName = "Map Combo File";
@@ -446,12 +555,13 @@ async function loadList(csvUrl, elementId) {
           }
         }
 
+        validCount++;
         const card = document.createElement('div');
         card.className = 'mod-card';
         
         let buttonHtml = downloadUrl 
-          ? `<a class="btn-download-mod" href="${downloadUrl}" target="_blank" rel="noopener noreferrer">Download</a>`
-          : `<span class="btn-download-mod disabled">No Link</span>`;
+          ? `<a class="btn-download-mod" href="${downloadUrl}" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-download"></i> Download</a>`
+          : `<span class="btn-download-mod disabled"><i class="fa-solid fa-lock"></i> No Link</span>`;
 
         card.innerHTML = `
           <div class="mod-order">${rawNum}</div>
@@ -461,18 +571,32 @@ async function loadList(csvUrl, elementId) {
         container.appendChild(card);
       }
     });
+
+    badge.textContent = validCount;
+
   } catch (err) {
     console.error(`Error loading ${elementId}:`, err);
     container.innerHTML = `
       <div class="state-message" style="color: #f87171;">
-        Failed to load downloads. Please check back shortly.
+        <i class="fa-solid fa-triangle-exclamation"></i> Unable to load files from spreadsheet.
       </div>`;
+    badge.textContent = '!';
   }
+}
+
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+
+  document.getElementById(`tab-${tab}`).classList.add('active');
+  document.getElementById(`pane-${tab}`).classList.add('active');
+  filterMods();
 }
 
 function filterMods() {
   const query = document.getElementById('searchInput').value.toLowerCase();
-  const cards = document.querySelectorAll('.mod-card');
+  const activePane = document.querySelector('.tab-pane.active');
+  const cards = activePane.querySelectorAll('.mod-card');
   
   cards.forEach(card => {
     const title = card.querySelector('.mod-title').textContent.toLowerCase();
@@ -480,8 +604,9 @@ function filterMods() {
   });
 }
 
-loadList(ETS2_CSV, 'ets2-list');
-loadList(ATS_CSV, 'ats-list');
+// Initial Load
+loadList(ETS2_CSV, 'pane-ets2', 'count-ets2');
+loadList(ATS_CSV, 'pane-ats', 'count-ats');
 </script>
 
 </body>
