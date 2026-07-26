@@ -26,7 +26,7 @@
   --emerald: #10b981;
   --amber: #f59e0b;
   
-  --text-primary: #f8fafc;
+  --text-primary: #ffffff;
   --text-secondary: #94a3b8;
   --text-muted: #64748b;
 }
@@ -348,7 +348,7 @@ h1 {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: 14px;
-  padding: 16px 20px;
+  padding: 18px 20px;
   transition: all 0.25s ease;
 }
 
@@ -372,25 +372,13 @@ h1 {
   justify-content: center;
 }
 
-.mod-details {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
+/* Clean, Single White Text Title */
 .mod-title {
-  font-size: 1rem;
+  font-size: 1.02rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: #ffffff;
   word-break: break-word;
-}
-
-.mod-meta {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.78rem;
-  color: var(--text-muted);
+  line-height: 1.4;
 }
 
 .btn-download {
@@ -677,12 +665,7 @@ async function loadGameList(csvUrl, gameKey) {
 
         card.innerHTML = `
           <div class="order-badge">${orderNum}</div>
-          <div class="mod-details">
-            <div class="mod-title">${name}</div>
-            <div class="mod-meta">
-              <span><i class="fa-solid fa-layer-group"></i> Mod Priority Position</span>
-            </div>
-          </div>
+          <div class="mod-title">${name}</div>
           ${actionBtn}
         `;
         container.appendChild(card);
