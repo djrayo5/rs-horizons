@@ -1,348 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RS Horizons V1 — Official Map Combo Downloads</title>
-
-<!-- Modern Font -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-<style>
-:root {
-  --bg-dark: #0b0f19;
-  --card-bg: rgba(22, 31, 49, 0.7);
-  --card-hover: rgba(30, 43, 69, 0.9);
-  --border-color: rgba(56, 189, 248, 0.15);
-  --accent-cyan: #38bdf8;
-  --accent-purple: #8b5cf6;
-  --accent-purple-hover: #7c3aed;
-  --text-main: #f1f5f9;
-  --text-muted: #94a3b8;
-}
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background-color: var(--bg-dark);
-  background-image: 
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(56, 189, 248, 0.15), transparent),
-    radial-gradient(ellipse 60% 40% at 50% 120%, rgba(139, 92, 246, 0.1), transparent);
-  color: var(--text-main);
-  line-height: 1.6;
-  min-height: 100vh;
-}
-
-/* Header & Hero */
-.hero {
-  padding: 48px 20px 32px;
-  text-align: center;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.logo {
-  max-width: 320px;
-  width: 85%;
-  height: auto;
-  margin: 0 auto 16px;
-  display: block;
-  filter: drop-shadow(0 0 25px rgba(56, 189, 248, 0.25));
-}
-
-h1 {
-  font-size: 2.75rem;
-  font-weight: 800;
-  letter-spacing: -0.025em;
-  background: linear-gradient(135deg, #ffffff 30%, var(--accent-cyan));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 6px;
-}
-
-.tagline {
-  font-size: 1.15rem;
-  color: var(--accent-cyan);
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  margin-bottom: 16px;
-}
-
-.intro {
-  font-size: 1rem;
-  color: var(--text-muted);
-  max-width: 720px;
-  margin: 0 auto 24px;
-}
-
-/* Quick Links Buttons */
-.button-group {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-}
-
-.btn-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-decoration: none;
-  color: white;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
-.btn-link:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
-}
-
-.btn-discord { background: #5865F2; }
-.btn-youtube { background: #FF0000; }
-.btn-download { background: var(--accent-purple); }
-
-/* Notice Banner */
-.notice-box {
-  background: rgba(234, 179, 8, 0.1);
-  border: 1px solid rgba(234, 179, 8, 0.3);
-  color: #fde047;
-  padding: 10px 16px;
-  border-radius: 8px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  display: inline-block;
-}
-
-/* Search Bar */
-.search-container {
-  max-width: 1000px;
-  margin: 32px auto 20px;
-  padding: 0 20px;
-}
-
-.search-input {
-  width: 100%;
-  padding: 14px 20px;
-  border-radius: 10px;
-  border: 1px solid var(--border-color);
-  background: rgba(15, 23, 42, 0.8);
-  color: white;
-  font-size: 0.95rem;
-  outline: none;
-  backdrop-filter: blur(8px);
-  transition: border-color 0.2s ease;
-}
-
-.search-input:focus {
-  border-color: var(--accent-cyan);
-  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
-}
-
-/* Section Containers */
-.container {
-  max-width: 1000px;
-  margin: 0 auto 48px;
-  padding: 0 20px;
-}
-
-.section-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text-main);
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.section-title::before {
-  content: '';
-  display: inline-block;
-  width: 4px;
-  height: 20px;
-  background: var(--accent-cyan);
-  border-radius: 2px;
-}
-
-/* Mods List Grid */
-.mods-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.mod-card {
-  display: grid;
-  grid-template-columns: 48px 1fr 140px 130px;
-  align-items: center;
-  gap: 16px;
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 12px 20px;
-  backdrop-filter: blur(12px);
-  transition: all 0.2s ease;
-}
-
-.mod-card:hover {
-  background: var(--card-hover);
-  border-color: rgba(56, 189, 248, 0.35);
-  transform: translateX(4px);
-}
-
-.mod-order {
-  font-weight: 700;
-  font-size: 0.9rem;
-  color: var(--accent-cyan);
-  background: rgba(56, 189, 248, 0.1);
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.mod-title {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--text-main);
-  line-height: 1.3;
-}
-
-.mod-meta {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  background: rgba(255, 255, 255, 0.04);
-  padding: 4px 10px;
-  border-radius: 6px;
-  text-align: center;
-  white-space: nowrap;
-}
-
-.btn-download-mod {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--accent-purple);
-  color: white;
-  text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 600;
-  padding: 8px 16px;
-  border-radius: 8px;
-  transition: background 0.2s ease;
-  text-align: center;
-}
-
-.btn-download-mod:hover {
-  background: var(--accent-purple-hover);
-}
-
-/* Loading & Empty States */
-.state-message {
-  text-align: center;
-  padding: 32px;
-  color: var(--text-muted);
-  background: var(--card-bg);
-  border: 1px dashed var(--border-color);
-  border-radius: 12px;
-  font-size: 0.9rem;
-}
-
-footer {
-  text-align: center;
-  padding: 32px 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  margin-top: 40px;
-}
-
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-  .mod-card {
-    grid-template-columns: 36px 1fr;
-    gap: 12px;
-    padding: 14px;
-  }
-  
-  .mod-meta {
-    grid-column: 2 / -1;
-    text-align: left;
-    width: fit-content;
-  }
-
-  .btn-download-mod {
-    grid-column: 1 / -1;
-    width: 100%;
-    margin-top: 4px;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<header class="hero">
-  <img src="RSHLogo.png" class="logo" alt="RS Horizons Logo">
-  <h1>RS Horizons V1</h1>
-  <div class="tagline">One World. Endless Roads.</div>
-  
-  <p class="intro">
-    A massive connected world expansion combining the best map projects into one seamless driving experience. Created by Rays Sim & Mr.Swede.
-  </p>
-
-  <div class="button-group">
-    <a class="btn-link btn-discord" href="https://discord.com/invite/nmPuEYtmhZ" target="_blank">Discord Community</a>
-    <a class="btn-link btn-youtube" href="https://www.youtube.com/@RaysSim" target="_blank">YouTube</a>
-    <a class="btn-link btn-download" href="#downloads">Map Combo Downloads</a>
-  </div>
-
-  <div class="notice-box">
-    ⚠️ Requires all official ETS2 Map DLCs. Follow the load order in Discord!
-  </div>
-</header>
-
-<div class="search-container">
-  <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search map files or connectors..." onkeyup="filterMods()">
-</div>
-
-<main class="container" id="downloads">
-  <h2 class="section-title">ETS2 Map Combo Downloads</h2>
-  <div class="mods-grid" id="ets2-list">
-    <div class="state-message">Loading map combo updates...</div>
-  </div>
-</main>
-
-<main class="container">
-  <h2 class="section-title">ATS Map Combo Downloads</h2>
-  <div class="mods-grid" id="ats-list">
-    <div class="state-message">Loading map combo updates...</div>
-  </div>
-</main>
-
-<footer>
-  🌍 RS Horizons V1 • Created by Rays Sim & Mr.Swede • One World. Endless Roads.
-</footer>
-
 <script>
 const PUB_ID = "2PACX-1vQUVe19uFKWsubVgwU1-U-_OnzR2dSo7zaPz5911uKaCg-b62wX8p-s3CY4sVFUdv4xDd1YqNDKAFFF";
 const ETS2_GID = "1587396084";
-const ATS_GID = "0"; // Replace with ATS tab GID if on a separate sheet tab
+const ATS_GID = "0";
 
 const ETS2_CSV = `https://docs.google.com/spreadsheets/d/e/${PUB_ID}/pub?gid=${ETS2_GID}&single=true&output=csv`;
 const ATS_CSV  = `https://docs.google.com/spreadsheets/d/e/${PUB_ID}/pub?gid=${ATS_GID}&single=true&output=csv`;
+
+function sanitizeText(str) {
+  if (!str) return '';
+  return str
+    .replace(/\\/g, '')
+    .replace(/^#+\s*/, '')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/[<>]/g, '')
+    .trim();
+}
+
+// Cleans URLs and automatically turns Google Drive share links into direct downloads
+function cleanUrl(url) {
+  if (!url) return '#';
+  
+  // Clean raw formatting
+  let clean = url.replace(/[<>"\\]/g, '').trim();
+
+  // If link is a Google Drive share link, force direct download format
+  if (clean.includes("drive.google.com/file/d/")) {
+    const fileIdMatch = clean.match(/\/d\/([^\/]+)/);
+    if (fileIdMatch && fileIdMatch[1]) {
+      return `https://drive.google.com/uc?export=download&id=${fileIdMatch[1]}`;
+    }
+  }
+
+  // If link is a Dropbox share link, force direct download format
+  if (clean.includes("dropbox.com") && clean.includes("dl=0")) {
+    return clean.replace("dl=0", "dl=1");
+  }
+
+  return clean;
+}
 
 function parseCSVLine(line) {
   const result = [];
@@ -386,18 +81,20 @@ async function loadList(csvUrl, elementId) {
     dataLines.forEach(line => {
       const cols = parseCSVLine(line);
       if (cols.length >= 2 && cols[1]) {
-        const num = cols[0] || '-';
-        const name = cols[1] || 'Unknown File';
-        const updated = cols[2] || 'Latest';
-        const link = cols[3] || '#';
+        const rawNum = sanitizeText(cols[0]) || '-';
+        const rawName = sanitizeText(cols[1]) || 'Unknown File';
+        const rawMeta = sanitizeText(cols[2]) || 'Latest';
+        const rawLink = cleanUrl(cols[3]);
+
+        if (rawName === '---' || rawName.length === 0) return;
 
         const card = document.createElement('div');
         card.className = 'mod-card';
         card.innerHTML = `
-          <div class="mod-order">${num}</div>
-          <div class="mod-title">${name}</div>
-          <div class="mod-meta">${updated}</div>
-          <a class="btn-download-mod" href="${link}" target="_blank">Download</a>
+          <div class="mod-order">${rawNum}</div>
+          <div class="mod-title">${rawName}</div>
+          <div class="mod-meta">${rawMeta}</div>
+          <a class="btn-download-mod" href="${rawLink}" target="_blank" rel="noopener noreferrer">Download</a>
         `;
         container.appendChild(card);
       }
@@ -421,10 +118,6 @@ function filterMods() {
   });
 }
 
-// Load spreadsheet data on render
 loadList(ETS2_CSV, 'ets2-list');
 loadList(ATS_CSV, 'ats-list');
 </script>
-
-</body>
-</html>
