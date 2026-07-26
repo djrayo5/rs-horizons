@@ -372,7 +372,21 @@ h1 {
   justify-content: center;
 }
 
-/* Clean, Single White Text Title */
+/* Title Container with File Icon */
+.mod-title-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mod-file-icon {
+  color: var(--cyan);
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+
+/* Clean White Title Text */
 .mod-title {
   font-size: 1.02rem;
   font-weight: 700;
@@ -665,7 +679,10 @@ async function loadGameList(csvUrl, gameKey) {
 
         card.innerHTML = `
           <div class="order-badge">${orderNum}</div>
-          <div class="mod-title">${name}</div>
+          <div class="mod-title-container">
+            <i class="fa-regular fa-file-lines mod-file-icon"></i>
+            <div class="mod-title">${name}</div>
+          </div>
           ${actionBtn}
         `;
         container.appendChild(card);
