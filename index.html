@@ -723,7 +723,7 @@ function extractUrl(cols) {
     if (!val) continue;
     let match = val.match(/https?:\/\/[^\s"'>)]+/i);
     if (match) {
-      let clean = match[0].replace(/[\"]/g, '').trim();
+      let clean = match[0].replace(/[\\"]/g, '').trim();
       if (clean.includes("drive.google.com/file/d/")) {
         const fileId = clean.match(/\/d\/([^\/]+)/);
         if (fileId && fileId[1]) return `https://drive.google.com/uc?export=download&id=${fileId[1]}`;
@@ -759,6 +759,15 @@ function parseCSVLine(line) {
   return result;
 }
 
+function isInstructionRow(text) {
+  if (!text) return false;
+  const upper = text.toUpperCase();
+  return upper.includes("LAST UPDATED") || 
+         upper.includes("IF THE MAP IS MARKED") || 
+         upper.includes("RECOMMENDED LOAD ORDER") ||
+         upper.includes("REPLACE THE OLD VERSION");
+}
+
 async function loadGameList(csvUrl, gameKey) {
   const container = document.getElementById(`tab-pane-${gameKey}`);
   
@@ -781,20 +790,24 @@ async function loadGameList(csvUrl, gameKey) {
     dataLines.forEach((line) => {
       const cols = parseCSVLine(line);
       if (cols.length >= 1) {
-        const rawCol0 = cleanText(cols[0]);
-        
-        // Filter out instructions or descriptive notes appearing in the first column
-        if (!rawCol0 || rawCol0.toUpperCase().includes("LAST UPDATED") || rawCol0.toUpperCase().includes("IF THE MAP") || rawCol0.length > 8) {
-          return;
+        const col0 = cleanText(cols[0]);
+        const col1 = cleanText(cols[1]);
+
+        // Skip instructions/header notes
+        if (isInstructionRow(col0) || isInstructionRow(col1)) return;
+
+        let orderNum = col0 || '-';
+        let name = col1;
+
+        // If col1 is empty but col0 contains the file title
+        if (!name && col0) {
+          name = col0;
+          orderNum = '-';
         }
 
-        const orderNum = rawCol0 || '-';
-        let name = cols[1] ? cleanText(cols[1]) : '';
-        const link = extractUrl(cols);
-
-        if (!name && cols[0] && isNaN(cols[0])) name = cleanText(cols[0]);
         if (!name || name === '---') return;
 
+        const link = extractUrl(cols);
         const item = { order: orderNum, name: name, url: link };
         modDataStore[gameKey].push(item);
 
