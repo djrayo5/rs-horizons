@@ -202,13 +202,15 @@ RS Horizons is a massive connected ETS2 world expansion project created by Rays 
 </footer>
 
 <script>
-// Google Spreadsheet configuration based on your URL
-const SPREADSHEET_ID = "1hdlf51v6EyxmrbzRM59pRCCGLOyGJ8q2WBB3_LpGkow";
-const ETS2_GID = "1587396084"; // GID from your sheet URL
-const ATS_GID = "0";          // Change to ATS tab GID if on a different sheet tab
+// Published Google Sheet URL Endpoint (pub?output=csv)
+const PUBLISHED_KEY = "2PACX-1vQUVe19uFKWsubVgwU1-U-_OnzR2dSo7zaPz5911uKaCg-b62wX8p-s3CY4sVFUdv4xDd1YqNDKAFFF";
 
-const ETS2_SHEET_CSV = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/export?format=csv&gid=${ETS2_GID}`;
-const ATS_SHEET_CSV  = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/export?format=csv&gid=${ATS_GID}`;
+// ETS2 Tab GID & ATS Tab GID
+const ETS2_GID = "1587396084"; 
+const ATS_GID  = "0"; // Replace with ATS sheet tab GID if applicable
+
+const ETS2_CSV_URL = `https://docs.google.com/spreadsheets/d/e/${PUBLISHED_KEY}/pub?gid=${ETS2_GID}&single=true&output=csv`;
+const ATS_CSV_URL  = `https://docs.google.com/spreadsheets/d/e/${PUBLISHED_KEY}/pub?gid=${ATS_GID}&single=true&output=csv`;
 
 function parseCSVLine(line) {
   const result = [];
@@ -268,13 +270,13 @@ async function loadList(csvUrl, elementId) {
   } catch (err) {
     console.error("Failed to load spreadsheet data:", err);
     document.getElementById(elementId).innerHTML = 
-      '<div style="text-align:center; padding:20px; color:#ff6666;">Unable to load download list. Make sure the Google Sheet is published to the web.</div>';
+      '<div style="text-align:center; padding:20px; color:#ff6666;">Unable to load download list.</div>';
   }
 }
 
 // Fetch lists on page load
-loadList(ETS2_SHEET_CSV, 'ets2-list');
-loadList(ATS_SHEET_CSV, 'ats-list');
+loadList(ETS2_CSV_URL, 'ets2-list');
+loadList(ATS_CSV_URL, 'ats-list');
 </script>
 
 </body>
