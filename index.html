@@ -939,9 +939,9 @@ const ATS_GID = "0";
 const ETS2_CSV = `https://docs.google.com/spreadsheets/d/e/${PUB_ID}/pub?gid=${ETS2_GID}&single=true&output=csv`;
 const ATS_CSV  = `https://docs.google.com/spreadsheets/d/e/${PUB_ID}/pub?gid=${ATS_GID}&single=true&output=csv`;
 
-// --- NEW COPY TEXT URLS ---
-const ETS2_COPY_CSV_URL = "https://docs.google.com/spreadsheets/d/1hdlf51v6EyxmrbzRM59pRCCGLOyGJ8q2WBB3_LpGkow/export?format=csv&gid=1747286453"; 
-const ATS_COPY_CSV_URL = "https://docs.google.com/spreadsheets/d/1hdlf51v6EyxmrbzRM59pRCCGLOyGJ8q2WBB3_LpGkow/export?format=csv&gid=624228707";
+// --- NEW FIX: Using the "Published" endpoint for your custom text tabs to bypass Google Security ---
+const ETS2_COPY_CSV_URL = `https://docs.google.com/spreadsheets/d/e/${PUB_ID}/pub?gid=1747286453&single=true&output=csv`; 
+const ATS_COPY_CSV_URL = `https://docs.google.com/spreadsheets/d/e/${PUB_ID}/pub?gid=624228707&single=true&output=csv`;
 
 let currentActiveGame = 'ets2';
 const modDataStore = { ets2: [], ats: [] };
@@ -1115,20 +1115,19 @@ async function copyLoadOrder() {
     return alert('Please select the ETS2 or ATS tab first to copy a load order.');
   }
 
-  // Determine which custom Google Sheets URL to fetch from
   const csvUrlToFetch = currentActiveGame === 'ets2' ? ETS2_COPY_CSV_URL : ATS_COPY_CSV_URL;
 
   try {
-    // 1. Try to fetch the exact text from the separate Google Sheets tabs you provided
     const response = await fetch(csvUrlToFetch);
-    
-    // If the link is blocked by Google Security (CORS) or is not shared publicly, throw an error to trigger the fallback
-    if (!response.ok) throw new Error('Could not read from Google Sheets due to security or sharing settings.');
+    if (!response.ok) throw new Error('Could not read from Google Sheets');
     
     let textData = await response.text();
     
-    // Clean up Google Sheet CSV formatting artifacts
-    textData = textData.replace(/^"|"$/gm, '').replace(/""/g, '"');
+    // Clean up Google Sheet CSV formatting artifacts row-by-row
+    textData = textData.split(/\r?\n/).map(line => {
+      // Remove the exact quotation marks Google Sheets wraps cells in
+      return line.replace(/^"|"$/g, '').replace(/""/g, '"');
+    }).join('\n');
 
     await navigator.clipboard.writeText(textData);
     alert(`Successfully copied the ${currentActiveGame.toUpperCase()} custom load order to your clipboard!`);
@@ -1136,7 +1135,7 @@ async function copyLoadOrder() {
   } catch (err) {
     console.log('Falling back to auto-generating list due to:', err.message);
     
-    // 2. SMART FALLBACK: If the above fails, automatically format and copy the list of files currently displaying on the screen!
+    // FALLBACK
     const items = modDataStore[currentActiveGame];
     if (!items || items.length === 0) return alert('No load order data available to copy!');
     
