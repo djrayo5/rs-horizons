@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RS Horizons V1.60 — Map Combo & Load Order Portal</title>
+<title>RS Horizons V1 — Map Combo & Load Order Portal</title>
 
 <!-- Fonts & Icons -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -690,7 +690,7 @@ footer {
     <i class="fa-solid fa-layer-group"></i> Official Load Orders & Downloads
   </div>
 
-  <h1>RS Horizons V1.60 Map Combo</h1>
+  <h1>RS Horizons V1 Map Combo</h1>
   
   <p class="hero-desc">
     Experience a seamlessly connected truck simulator universe. Browse tested load order positions, download required map files, and keep your game crash-free.
@@ -780,16 +780,6 @@ footer {
         Place these files in your Mod Manager within the <strong>MAPS SECTION (Bottom of your Mod Manager)</strong> in this exact Top-to-Bottom order to prevent crashes or broken roads:
       </p>
 
-       <!-- Background -->
-      <div class="combo-block" style="border-left: 4px solid var(--text-muted);">
-        <div class="combo-block-header" style="color: var(--text-secondary);"><i class="fa-solid fa-image"></i>  Background & Zoom Fixes (TOP)</div>
-        <ul class="combo-item-list">
-          <li>ETS2 Global Background Map</li>
-          <li>Fullscreen Map Fix</li>
-        </ul>
-      </div>
-    </div>
-      
       <!-- Step 1: Connectors -->
       <div class="combo-block" style="border-left: 4px solid var(--cyan);">
         <div class="combo-block-header" style="color: var(--cyan);"><i class="fa-solid fa-link"></i> 1. Road Connections & Fixes (TOP of Map Section)</div>
@@ -838,7 +828,15 @@ footer {
         </ul>
       </div>
 
-     
+      <!-- Step 5: Background -->
+      <div class="combo-block" style="border-left: 4px solid var(--text-muted);">
+        <div class="combo-block-header" style="color: var(--text-secondary);"><i class="fa-solid fa-image"></i> 5. Background & Zoom Fixes (BOTTOM)</div>
+        <ul class="combo-item-list">
+          <li>ETS2 Global Background Map</li>
+          <li>Fullscreen Map Fix</li>
+        </ul>
+      </div>
+    </div>
 
     <!-- Category Load Structure Section -->
     <div class="guide-card-box">
@@ -933,12 +931,17 @@ footer {
 </footer>
 
 <script>
+// --- MAIN PORTAL GOOGLE SHEET URLS ---
 const PUB_ID = "2PACX-1vQUVe19uFKWsubVgwU1-U-_OnzR2dSo7zaPz5911uKaCg-b62wX8p-s3CY4sVFUdv4xDd1YqNDKAFFF";
 const ETS2_GID = "1587396084";
 const ATS_GID = "0";
 
 const ETS2_CSV = `https://docs.google.com/spreadsheets/d/e/${PUB_ID}/pub?gid=${ETS2_GID}&single=true&output=csv`;
 const ATS_CSV  = `https://docs.google.com/spreadsheets/d/e/${PUB_ID}/pub?gid=${ATS_GID}&single=true&output=csv`;
+
+// --- NEW COPY TEXT URLS (Using your specific Google Sheet Tab for ETS2) ---
+const ETS2_COPY_CSV_URL = "https://docs.google.com/spreadsheets/d/1hdlf51v6EyxmrbzRM59pRCCGLOyGJ8q2WBB3_LpGkow/export?format=csv&gid=1747286453"; 
+const ATS_COPY_CSV_URL = "PASTE_ATS_TEXT_CSV_URL_HERE";
 
 let currentActiveGame = 'ets2';
 const modDataStore = { ets2: [], ats: [] };
@@ -1106,16 +1109,43 @@ function filterMods() {
   });
 }
 
-function copyLoadOrder() {
-  const items = modDataStore[currentActiveGame];
-  if (!items || items.length === 0) return alert('No load order data available to copy!');
-  
-  const textList = items.map(i => `${i.order}. ${i.name}`).join('\n');
-  navigator.clipboard.writeText(textList).then(() => {
-    alert(`Copied ${items.length} ${currentActiveGame.toUpperCase()} items to clipboard!`);
-  }).catch(() => {
-    alert('Failed to copy to clipboard.');
-  });
+// --- NEW UPDATED COPY LOAD ORDER FUNCTION ---
+async function copyLoadOrder() {
+  if (currentActiveGame === 'guide') {
+    return alert('Please select the ETS2 or ATS tab first to copy a load order.');
+  }
+
+  // Determine which Google Sheets CSV URL to pull from based on the active tab
+  const csvUrlToFetch = currentActiveGame === 'ets2' ? ETS2_COPY_CSV_URL : ATS_COPY_CSV_URL;
+
+  // If you haven't pasted the URL yet, fallback to the auto-generated list
+  if (!csvUrlToFetch || csvUrlToFetch.includes("PASTE_")) {
+    const items = modDataStore[currentActiveGame];
+    if (!items || items.length === 0) return alert('No load order data available to copy!');
+    const textList = items.map(i => `${i.order}. ${i.name}`).join('\n');
+    navigator.clipboard.writeText(textList).then(() => {
+      alert(`Copied ${items.length} ${currentActiveGame.toUpperCase()} items to clipboard (Auto-generated list)!`);
+    }).catch(() => alert('Failed to copy to clipboard.'));
+    return;
+  }
+
+  // Fetch the custom text directly from your friend's new Google Sheet tab
+  try {
+    const response = await fetch(csvUrlToFetch);
+    if (!response.ok) throw new Error('Could not read from Google Sheets');
+    
+    let textData = await response.text();
+    
+    // Clean up CSV artifacts (Google Sheets wraps multiline cells in quotes)
+    textData = textData.replace(/^"|"$/gm, '').replace(/""/g, '"');
+
+    await navigator.clipboard.writeText(textData);
+    alert(`Successfully copied the custom ${currentActiveGame.toUpperCase()} load order to your clipboard!`);
+    
+  } catch (err) {
+    console.error('Error copying text:', err);
+    alert('Failed to copy. Make sure the new Google Sheet tabs are published as CSV or Link Sharing is on.');
+  }
 }
 
 // Initial Data Fetch
