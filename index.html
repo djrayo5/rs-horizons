@@ -423,7 +423,67 @@ h1 {
   pointer-events: none;
 }
 
-/* Category Guide List */
+/* Category & Map Load Guide Styles */
+.guide-card-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.guide-section-title {
+  color: var(--cyan);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.combo-block {
+  background: rgba(6, 8, 14, 0.5);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.combo-block-header {
+  font-weight: 800;
+  color: #ffffff;
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.combo-item-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.combo-item-list li {
+  position: relative;
+  padding-left: 24px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+}
+
+.combo-item-list li::before {
+  content: "↳";
+  color: var(--cyan);
+  position: absolute;
+  left: 6px;
+  font-weight: bold;
+}
+
+/* Category Guide Block Rows */
 .guide-list {
   display: flex;
   flex-direction: column;
@@ -658,7 +718,7 @@ footer {
     </button>
     <button class="game-tab-btn" id="tab-btn-guide" onclick="switchGame('guide')">
       <i class="fa-solid fa-list-check"></i>
-      <span>Category Load Guide</span>
+      <span>Load Order Guide</span>
     </button>
   </div>
 
@@ -691,10 +751,77 @@ footer {
 
   <!-- Load Order Guide Tab -->
   <div class="tab-content" id="tab-pane-guide">
-    <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; margin-bottom: 12px;">
-      <h2 style="color: var(--cyan); margin-bottom: 8px; font-family: 'Space Grotesk', sans-serif;"><i class="fa-solid fa-list-ol"></i> Recommended Category Load Structure</h2>
+    
+    <!-- ProMods + ROEX + RusMap Specific Section -->
+    <div class="guide-card-box">
+      <h2 class="guide-section-title"><i class="fa-solid fa-map-location-dot"></i> ProMods + ROEX + RusMap Combo Load Order</h2>
+      <p style="color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 20px;">
+        Place these files in your Mod Manager within the <strong>MAPS SECTION (Bottom of your Mod Manager)</strong> in this exact Top-to-Bottom order to prevent crashes or broken roads:
+      </p>
+
+      <!-- Step 1: Connectors -->
+      <div class="combo-block" style="border-left: 4px solid var(--cyan);">
+        <div class="combo-block-header" style="color: var(--cyan);"><i class="fa-solid fa-link"></i> 1. Road Connections & Fixes (TOP of Map Section)</div>
+        <ul class="combo-item-list">
+          <li>ROEX to RusMap Road Connection</li>
+          <li>ROEX to ProMods Road Connection (or Hybrid RC)</li>
+          <li>RusMap to ProMods Road Connection</li>
+          <li>Universal Fix Localization / Combo Fixes</li>
+        </ul>
+      </div>
+
+      <!-- Step 2: ROEX -->
+      <div class="combo-block" style="border-left: 4px solid var(--purple);">
+        <div class="combo-block-header" style="color: var(--purple);"><i class="fa-solid fa-route"></i> 2. ROextended (ROEX)</div>
+        <ul class="combo-item-list">
+          <li>ROEX English City Names (optional)</li>
+          <li>ROEX Def / Assets</li>
+          <li>ROEX Prefabs</li>
+          <li>ROEX Model</li>
+          <li>ROEX Map</li>
+        </ul>
+      </div>
+
+      <!-- Step 3: RusMap -->
+      <div class="combo-block" style="border-left: 4px solid var(--amber);">
+        <div class="combo-block-header" style="color: var(--amber);"><i class="fa-solid fa-mountain-city"></i> 3. RusMap</div>
+        <ul class="combo-item-list">
+          <li>RusMap Map Package</li>
+          <li>RusMap Model 2 Package</li>
+          <li>RusMap Model Package</li>
+          <li>RusMap Def Package</li>
+        </ul>
+      </div>
+
+      <!-- Step 4: ProMods -->
+      <div class="combo-block" style="border-left: 4px solid var(--emerald);">
+        <div class="combo-block-header" style="color: var(--emerald);"><i class="fa-solid fa-earth-europe"></i> 4. ProMods Europe</div>
+        <ul class="combo-item-list">
+          <li>ProMods Definition Package (Generated with "Map Combo" option checked)</li>
+          <li>ProMods Map Package</li>
+          <li>ProMods Media Package</li>
+          <li>ProMods Models Package 3</li>
+          <li>ProMods Models Package 2</li>
+          <li>ProMods Models Package 1</li>
+          <li>ProMods Assets Package</li>
+        </ul>
+      </div>
+
+      <!-- Step 5: Background -->
+      <div class="combo-block" style="border-left: 4px solid var(--text-muted);">
+        <div class="combo-block-header" style="color: var(--text-secondary);"><i class="fa-solid fa-image"></i> 5. Background & Zoom Fixes (BOTTOM)</div>
+        <ul class="combo-item-list">
+          <li>ETS2 Global Background Map</li>
+          <li>Fullscreen Map Fix</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Category Load Structure Section -->
+    <div class="guide-card-box">
+      <h2 class="guide-section-title"><i class="fa-solid fa-list-ol"></i> General Mod Category Hierarchy</h2>
       <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 20px;">
-        Use this category hierarchy in your ETS2/ATS Mod Manager (Top to Bottom). Place ProMods, ROEX, RusMap, and connectors inside the <strong>MAPS</strong> section at the bottom.
+        Use this overall category priority layout in Mod Manager from Top (Highest Priority) to Bottom (Lowest Priority):
       </p>
 
       <div class="guide-list">
@@ -713,11 +840,8 @@ footer {
         <div class="guide-row"><div class="guide-badge">13</div><div class="guide-name">Trucks</div></div>
         <div class="guide-row"><div class="guide-badge" style="background: rgba(139, 92, 246, 0.15); border-color: var(--purple); color: var(--purple);">BOTTOM</div><div class="guide-name">Maps (ProMods, ROEX, RusMap, Connectors)</div></div>
       </div>
-
-      <p style="color: var(--amber); font-size: 0.85rem; text-align: center; margin-top: 16px;">
-        ⚠️ Incorrect category load orders may cause game crashes, invisible roads, or broken sectors.
-      </p>
     </div>
+
   </div>
 
 </main>
