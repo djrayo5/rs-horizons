@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RS Horizons 1.60 — Map Combo & Load Order Portal</title>
+<title>RS Horizons V1.60 — Map Combo & Load Order Portal</title>
 
 <!-- Fonts & Icons -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -518,6 +518,27 @@ h1 {
   font-size: 0.98rem;
 }
 
+/* Screenshot Gallery */
+.gallery-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.gallery-img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 2px solid var(--border-color);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  transition: border-color 0.3s ease;
+}
+
+.gallery-img:hover {
+  border-color: var(--cyan);
+}
+
 /* Loading & Empty States */
 .state-box {
   text-align: center;
@@ -775,11 +796,10 @@ footer {
         <div class="combo-block-header" style="color: var(--purple);"><i class="fa-solid fa-route"></i> 2. ROextended (ROEX)</div>
         <ul class="combo-item-list">
           <li>ROEX English City Names (optional)</li>
-          <li>ROEX core</li>
-          <li>ROEX MAIN1</li>
-          <li>ROEX MAIN2</li>
-          <li>ROEX MAIN3</li>
-          <li>ROEX MAIN4</li>
+          <li>ROEX Def / Assets</li>
+          <li>ROEX Prefabs</li>
+          <li>ROEX Model</li>
+          <li>ROEX Map</li>
         </ul>
       </div>
 
@@ -787,9 +807,10 @@ footer {
       <div class="combo-block" style="border-left: 4px solid var(--amber);">
         <div class="combo-block-header" style="color: var(--amber);"><i class="fa-solid fa-mountain-city"></i> 3. RusMap</div>
         <ul class="combo-item-list">
-          <li>RusMap def</li>
-          <li>RusMap MAP </li>
-          <li>RusMap ModelS </li>        
+          <li>RusMap Map Package</li>
+          <li>RusMap Model 2 Package</li>
+          <li>RusMap Model Package</li>
+          <li>RusMap Def Package</li>
         </ul>
       </div>
 
@@ -799,11 +820,11 @@ footer {
         <ul class="combo-item-list">
           <li>ProMods Definition Package (Generated with "Map Combo" option checked)</li>
           <li>ProMods Map Package</li>
-          <li>ProMods Assets Package</li>
-          <li>ProMods Models Package 1</li>
-          <li>ProMods Models Package 2</li>
-          <li>ProMods Models Package 3</li>
           <li>ProMods Media Package</li>
+          <li>ProMods Models Package 3</li>
+          <li>ProMods Models Package 2</li>
+          <li>ProMods Models Package 1</li>
+          <li>ProMods Assets Package</li>
         </ul>
       </div>
 
@@ -839,6 +860,24 @@ footer {
         <div class="guide-row"><div class="guide-badge">12</div><div class="guide-name">Trailers</div></div>
         <div class="guide-row"><div class="guide-badge">13</div><div class="guide-name">Trucks</div></div>
         <div class="guide-row"><div class="guide-badge" style="background: rgba(139, 92, 246, 0.15); border-color: var(--purple); color: var(--purple);">BOTTOM</div><div class="guide-name">Maps (ProMods, ROEX, RusMap, Connectors)</div></div>
+      </div>
+    </div>
+
+    <!-- NEW IMAGE GALLERY SECTION -->
+    <div class="guide-card-box">
+      <h2 class="guide-section-title"><i class="fa-solid fa-images"></i> Visual Load Order Screenshots</h2>
+      <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 20px;">
+        Follow these screenshots from Step 1 to Step 7 to see exactly how your Mod Manager should look.
+      </p>
+
+      <div class="gallery-grid">
+        <img src="1.png" alt="Load Order Part 1" class="gallery-img">
+        <img src="2.png" alt="Load Order Part 2" class="gallery-img">
+        <img src="3.png" alt="Load Order Part 3" class="gallery-img">
+        <img src="4.png" alt="Load Order Part 4" class="gallery-img">
+        <img src="5.png" alt="Load Order Part 5" class="gallery-img">
+        <img src="6.png" alt="Load Order Part 6" class="gallery-img">
+        <img src="7.png" alt="Load Order Part 7" class="gallery-img">
       </div>
     </div>
 
