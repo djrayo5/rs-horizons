@@ -737,21 +737,15 @@ footer {
       <span>American Truck Simulator</span>
       <span class="tab-count" id="count-badge-ats">0</span>
     </button>
-    <button class="game-tab-btn" id="tab-btn-guide" onclick="window.open('load-order-guide.txt', '_blank')">
+  <i class="fa-solid fa-list-check"></i> <span>Load Order Guide</span> </button> </div> 
+  
+  <!-- Controls Bar (For ETS2 / ATS lists) --> <div class="controls-row" id="controls-bar"> 
+    <div class="search-box"> <i class="fa-solid fa-magnifying-glass"></i> 
+      <input type="text" id="searchInput" class="search-input" placeholder="Search files, map fixes, connectors..." onkeyup="filterMods()"> </div> 
+   <button class="game-tab-btn" id="tab-btn-guide" onclick="window.open('files/load-order-guide.txt', '_blank')">
   <i class="fa-solid fa-list-check"></i>
-  <span>Load Order Guide</span>
+  <span>Load Order</span>
 </button>
-
-  <!-- Controls Bar (For ETS2 / ATS lists) -->
-  <div class="controls-row" id="controls-bar">
-    <div class="search-box">
-      <i class="fa-solid fa-magnifying-glass"></i>
-      <input type="text" id="searchInput" class="search-input" placeholder="Search files, map fixes, connectors..." onkeyup="filterMods()">
-    </div>
-    <button class="btn-utility" onclick="copyLoadOrder()">
-      <i class="fa-solid fa-copy"></i> Copy Order List
-    </button>
-  </div>
 
   <!-- ETS2 Content Container -->
   <div class="tab-content active" id="tab-pane-ets2">
